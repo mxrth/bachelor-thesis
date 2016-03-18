@@ -4,6 +4,8 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath, amsthm, amssymb}
 
+%frontpage
+
 %font
 \usepackage[euler-digits, euler-hat-accent]{eulervm}
 \usepackage{newpxtext}
@@ -12,16 +14,28 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definiton}
 
-\title{Motivic Zeta Function}
+\usepackage{BA_Titelseite}
+
 \author{Maximilian Rath}
+\geburtsdatum{2. Januar 1995}
+\geburtsort{Reutlingen}
+
+\date{2.2.2016}
+\betreuer{Prof. Dr. Daniel Huybrechts}
+\institut{Mathematisches Institut}
 
 
+\title{Motivic Zeta Function}
+\ausarbeitungstyp{Bachelorarbeit Mathematik}
 
 \begin{document}
+
+\maketitle
 
 \begin{definition}
     In the following the term \emph{$k$-variety} always means a separated, integral scheme of finite type over a field $k$.
@@ -36,6 +50,9 @@
         [X] - [Y] = [X \setminus Y]
     \]
     Where Y is closed in X.
+
+    A \emph{motivic measure} is a ringhomomorphism $\mu: K_0[\mathcal{V}_k] \to A$ into a ring $A$. The identity function
+    $id: K_0[\mathcal{V}_k] \to K_0[\mathcal{V}_k]$ is called the \emph{universal motivic measure}.
 \end{definition}
 
 \end{document}
