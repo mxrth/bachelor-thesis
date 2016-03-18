@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, amsthm, amssymb}
+
+%font
+\usepackage[euler-digits, euler-hat-accent]{eulervm}
+\usepackage{newpxtext}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definiton}
+
+\title{Motivic Zeta Function}
+\author{Maximilian Rath}
+
+
+
+\begin{document}
+
+\begin{definition}
+    In the following the term \emph{$k$-variety} always means a separated, integral scheme of finite type over a field $k$.
+    Denote by $\mathcal{V}_k$ the category of $k$-varieties.
+\end{definition}
+
+\begin{definition}
+    Let $k$ be a Field. Consider the group of formal linear combinations of isomorphism-classes in $\mathcal{V}_k$.
+    Setting $[X] \times [Y] := [X \times Y]$ makes this into a ring.
+    The \emph{Grothendieck ring of varieties} $K_0[\mathcal{V}_k]$ is then obtained by modding out relations of the form
+    \[
+        [X] - [Y] = [X \setminus Y]
+    \]
+    Where Y is closed in X.
+\end{definition}
+
+\end{document}
