@@ -1,0 +1,29 @@
+% This file was created with JabRef 2.10.
+% Encoding: UTF-8
+
+
+@Book{SGA1,
+  Title                    = {Rev\^etements \'etales et groupe fondamental (SGA 1)},
+  Author                   = {Grothendieck, Alexander},
+  Publisher                = {Springer-Verlag},
+  Year                     = {1971},
+  Series                   = {Lecture notes in mathematics},
+  Volume                   = {224}
+}
+
+@Article{MR1996804,
+  Title                    = {Motivic measures and stable birational geometry},
+  Author                   = {Larsen, Michael and Lunts, Valery A.},
+  Journal                  = {Mosc. Math. J.},
+  Year                     = {2003},
+  Number                   = {1},
+  Pages                    = {85--95, 259},
+  Volume                   = {3},
+
+  Fjournal                 = {Moscow Mathematical Journal},
+  ISSN                     = {1609-3321},
+  Mrclass                  = {14F43 (11S40 14E08)},
+  Mrnumber                 = {1996804},
+  Mrreviewer               = {Dan Abramovich}
+}
+
