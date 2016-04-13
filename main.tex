@@ -44,21 +44,20 @@
 
 \maketitle
 %TODO: Intro
-In 1949 Andr\`e Weil, in his Paper "Number of solutions of equations in finite fields", formulated his famous Weil-Conjectures
+In 1949 Andr\'e Weil, in the paper "Number of solutions of equations in finite fields", formulated his famous Weil-Conjectures
 which predicted certain deep properties of the Hasse-Weil zeta function for a Variety $X$ over a finite field $k = \mathbb{F}_q$ defined as
 \[
     Z(X,t) = exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \big)
 \]
 
 The rationality of the zeta function, the most basic of the three conjectures, was first established by Dwork. Grothendieck later gave another
-proof using his new scheme-theoretic approach to algebraic geometry, an approach that was in large parts motivated by the desire to at some point
-proof all the Weil conjectures. 
+proof using his new scheme-theoretic approach to algebraic geometry.
 Grothendieck's revolutionary new perspective was fundamental for the work of Deligne, who used these new methods to finally establish the 
 last part of the conjectures, an analouge of the Riemann hypothesis, in 1974.
-In this thesis we want to generalize the Hasse-Weil zeta function to a broader setting, not only talking about varieties over finite fields
+In \cite{kapranov} Kapranov generalized the Hasse-Weil zeta function, defining it not only for varieties over finite fields
 but varieties in general. It turns out that in this more general setting the zeta function isn't as well behaved in terms of rationality as
 the "classical" Hasse-Weil zetafunction and we will investigate this phenomen more closely in the case of complex surfaces, following the 
-work of Larsen and Lunts.
+work of Larsen and Lunts in \cite{MR1996804}.
 
 \begin{definition}
     In the following the term \emph{$k$-variety} always means a separated, integral scheme of finite type over a field $k$.
@@ -81,10 +80,10 @@ Using this notation we can rewrite the zeta function as
 So the definition comes down to counting effective 0-cycles of a given degree. 
 
 \begin{definition}
-    Let $k$ be a perfect field.\footnote{The definition makes sense even if k isn't perfect, we just have to adjust to the fact that the product
-    of two varieties need not be reduced. But since all our applications are either over finite fields or in characteristic zero we make our
-    life a little easier by assuming k as perfect}
-    Now consider the abelian group of formal linear combinations of isomorphism classes of varieties, subject to relations of the form
+    Let $k$ be a perfect field.\footnote{The definition can be altered to make sense even if k isn't perfect, 
+    in this case we just have to account for the fact that the product of two varieties need not be reduced. 
+    But since all our applications are either over finite fields or in characteristic zero this slight loss of generality won't affect us.}
+    Consider the abelian group of formal linear combinations of isomorphism classes of varieties, subject to relations of the form
     \[
         [X \setminus Y] = [X] - [Y]
     \] where Y is closed in X.
@@ -93,14 +92,16 @@ So the definition comes down to counting effective 0-cycles of a given degree.
         [X][Y] = [X \times Y]
     \]
     this forms a ring, called the \emph{Grothendieck ring of varieties} and denoted by $\gring$. 
+    
     A \emph{motivic measure} is a ring homomorphism $\mu: \gring \to A$ into a ring $A$. The identity function
     $id: \gring \to \gring$ is called the \emph{universal motivic measure}.
 \end{definition}
 
-Since the fibre product is commutative up to isomorphism this ring is commutative. The cut and paste relation furthermore gives us
+Since the fibre product is commutative up to isomorphism this  is commutative ring with 1 (equal to $[Spec(k)]$). 
+The cut and paste relation furthermore gives us
 \[
     0 = [\emptyset] - [\emptyset] = [\emptyset \setminus \emptyset] = [\emptyset]
-\] and the multiplicative neutral element is given by $1 = [Spec(k)]$
+\]
 
 
 \begin{remark}
@@ -147,7 +148,7 @@ Since the fibre product is commutative up to isomorphism this ring is commutativ
     Hence $\zeta_{id}(\mathbb{P}_k^1, t)$ is in fact a rational function.
 \end{example}
 
-Kapranov proves in \cite{Kaparnov} that the zeta function of a curve with coefficents in a field is in fact always rational. 
+Kapranov proves in \cite{kapranov} that the zeta function of a curve with coefficents in a field is in fact always rational. 
 In their paper \cite{MR1996804} Larsen and Lunts prove that in the case of surfaces this is false in general.
 Later the same authors gave a more precise characterisation when the zeta function of a complex surface is rational 
 (namely if and only if the Kodaira dimension is $-\infty$. See \cite{LL2}).
