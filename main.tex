@@ -39,15 +39,18 @@
 %I don't want to write the Grothendieck-Ring over and over
 \newcommand{\gring}[1][k]{K_0[\mathcal{V}_#1]}
 
+\DeclareMathOperator{\spec}{Spec}
 
 \begin{document}
 
 \maketitle
-%TODO: Intro
+\section{Introduction}
+
 In 1949 Andr\'e Weil, in the paper "Number of solutions of equations in finite fields", formulated his famous Weil-Conjectures
 which predicted certain deep properties of the Hasse-Weil zeta function for a Variety $X$ over a finite field $k = \mathbb{F}_q$ defined as
+%XXX: spacing before last paren
 \[
-    Z(X,t) = exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \big)
+    Z(X,t) = exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \big)
 \]
 
 The rationality of the zeta function, the most basic of the three conjectures, was first established by Dwork. Grothendieck later gave another
@@ -64,20 +67,71 @@ work of Larsen and Lunts in \cite{MR1996804}.
     We will write $\mathcal{V}_k$ for the category of $k$-varieties.
 \end{definition}
 
+We now want to motivate what the "right" generalization of the Hasse-Weil zeta function for varieties over a arbitrary field $k$ should be.
+This part therefore, in some places, sacrifices mathematical precision for the sake of brevity.  
+We still give citations for most of the results and will of course develop everything that is important for the presentation and proof 
+of our main result in later sections in full detail.
+
+Two things don't generalize easily: the passing to bigger and bigger extensions of the ground field $k$ (what if $k$ is algebraically closed,
+for example?), and counting $k$-rational points (again, if $k = \bar{k}$ there are, in general, a lot of $k$-rational points). 
+
 %XXX this section might be too much to develop in detail
-To get a better feeling for what exactly would be a good generalisation, we give another equivalent definition of the Hasse-Weil zeta function in
-terms of effective 0-cycles. Recall that a 0-cycle on a Variety X is an element of the free abelian group over the closed 
+To see what could be generalizations for these phenomenas, 
+we give another equivalent definition of the Hasse-Weil zeta function in terms of effective 0-cycles. 
+Recall that a 0-cycle on a Variety X is an element of the free abelian group over the closed 
 points of X. Such a cycle $\alpha = \sum_i n_i x_i$ is called \emph{effective} if the $n_i$ are greater than or equal to zero.
 The \emph{degree} of $\alpha$ is given by $deg(\alpha) = \sum_i n_i deg(x_i)$ ($deg(x_i)$ being the degree of the field extension $k(x_i)/k$).
 
-Using this notation we can rewrite the zeta function as 
+Using this notation we can rewrite the zeta function as follows 
 \begin{equation}
     Z(X,t) = \sum_{\alpha} t^{deg(\alpha)}
 \end{equation}
+Where the sum ranges over all 0-cycles on $X$.
 (For a proof of this (elementary) identity see for example Musta\c{t}\u{a}s great notes on zeta functions in algebraic geometry 
-\cite[Remark 2.9]{mustata}
+\cite[Remark 2.9]{mustata})
 
-So the definition comes down to counting effective 0-cycles of a given degree. 
+This definition still does not easily generalize, since for example $\mathbb{A}_{\mathbb{C}}^1$ has infinitely many 0-cycles of degree $n$.
+
+But counting degree zero cycles of a given degree $n$, is the same as counting $k$-rational points of the $n$-fold symmetric product of the 
+variety $X$ (denoted by $Sym^n(X)$).
+We won't formally introduce the symmetric product until later, but thinking of it as the quotient of 
+the $n$-fold product of $X$ with itself by the natural action of the symmetric group in $n$ letters gives the right intuition. 
+For $k$ algebraically closed, the bijection is obvious, since then the $k$-rational points are exactly the closed points. 
+Dividing out by the action of the symmetric product hence introduces the commutativity-relations we have if we consider formal sums
+of such closed points. This intuition carries over for the case of finite fields, hence we get
+
+\begin{equation}
+    Z(X,t) = \sum_{n} |Sym^n(X)(k)| t^n
+\end{equation}
+
+So, in some rough sense, we are "measuring" the size of bigger and bigger symmetric products of X, so we expect the symmetric product
+to make an apearance in our generalized zeta function, taking the role of counting solutions over bigger and bigger field-extensions.
+
+We now collect some properties of counting rational points of a variety over a finite field, that will guide our definition for "measures" 
+of the symmetric product.
+
+\begin{remark}
+    For a finite field $k$, consider the function \footnote{not bothering with any set-theoretic issues} 
+    \begin{align*}
+        \psi: \mathcal{V}_k & \to   \mathbb{Z}\\
+        X & \mapsto |X(k)|
+    \end{align*}
+
+    1. If $X$ and $Y$ are isomorphic $k$-varieties, then $\psi(X) = \psi(Y)$
+
+    2. If $Y \subset X$ is closed subvariety, then $\psi(X \setminus Y) = \psi(X) - \psi(Y)$ 
+    (This essentialy gives the equation $Z(X \setminus Y, t) = \frac{Z(X, t)}{Z(Y,t)})$)
+
+    3. If $X$ and $Y$ are two varieties, then $\psi(X \times Y) = \psi(X)\psi(Y)$
+    (This gives, for example, the identity $Z(X \times \mathbb{A}^n_k, t) = Z(X, q^nt)$ )
+\end{remark}
+
+%XXX: move into next section?
+
+\section{The Grothendieck Ring of Varieties and Motivic Measures}
+
+We now construct the Grothendieck ring of varieties as the universal ring over which any map with these properties factors as a 
+ring homomorphism. Then our generalized measures will simply be ring homomorphisms out of this universal ring.
 
 \begin{definition}
     Let $k$ be a perfect field.\footnote{The definition can be altered to make sense even if k isn't perfect, 
@@ -93,21 +147,15 @@ So the definition comes down to counting effective 0-cycles of a given degree.
     \]
     this forms a ring, called the \emph{Grothendieck ring of varieties} and denoted by $\gring$. 
     
-    A \emph{motivic measure} is a ring homomorphism $\mu: \gring \to A$ into a ring $A$. The identity function
+    A \emph{motivic measure} with values in a ring $A$ is a ring homomorphism $\mu: \gring \to A$. The identity function
     $id: \gring \to \gring$ is called the \emph{universal motivic measure}.
 \end{definition}
 
-Since the fibre product is commutative up to isomorphism this  is commutative ring with 1 (equal to $[Spec(k)]$). 
+Since the product is commutative up to isomorphism this is a commutative ring with 1 (equal to $[\spec(k)]$). 
 The cut and paste relation furthermore gives us
 \[
     0 = [\emptyset] - [\emptyset] = [\emptyset \setminus \emptyset] = [\emptyset]
 \]
-
-
-\begin{remark}
-    By \cite[Proposition 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
-    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
-\end{remark}
 
 \begin{example}
     \label{projSum}
@@ -115,17 +163,25 @@ The cut and paste relation furthermore gives us
     in $\mathbb{P}_k^n$  we get $[\mathbb{P}_k^n] = [\mathbb{P}_k^{n-1}] + [\mathbb{A}_k^n]$ in the Grothendieck ring.
     Inductively this yields the identity 
     \[
-        [\mathbb{P}_k^n] = \sum_{k=0}^n [\mathbb{A}_k^1]^k
+        [\mathbb{P}_k^n] = \sum_{m=0}^n [\mathbb{A}_k^1]^m
     \]
     %XXX: more natural place for introducing this convention?
     We also denote the isomorphism class of the affine line as $\mathbb{L}$.
 \end{example}
+
+\begin{remark}
+    By \cite[Proposition 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
+    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
+\end{remark}
+
 %XXX: More examples?
 %TODO: symmetric product
 %TODO: Example: symmetric product of P_k^1
 %TODO: Motivic zeta function
 %TODO: Examples for zeta functions (at least \zeta(P^1)
 %XXX: keep the _k subscripts when writing A_k^n and P_k^n?
+
+\section{Symmetric Products and the Motivic Zeta Function}
 
 \begin{definition}
     Let $\mu: \gring \to A$ be a motivic measure and $X$ a variety. Then we define the \emph{motivic zeta function} 
@@ -160,6 +216,7 @@ We will proof the following statement from \cite{MR1996804}
     is not rational.
 \end{theorem}
 
+\section{Constructing Motivic Measures}
 
 The first important result on the way to prove this is a structure theorem for $\gring[\mathbb{C}]$.
 %XXX: Maybe define monoid ring?
@@ -208,6 +265,8 @@ To prove this result we will use a result by Bittner.
     \]
     Hence we can linearly extend $\psi$ to define the morphism $\phi: \gring[\mathbb{C}] \to \mathbb{Z} [G]$
 \end{proof}
+
+\section{Irrationality}
 
 \bibliography{mybib}{}
 \bibliographystyle{alpha}
