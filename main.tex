@@ -6,7 +6,7 @@
 
 %bibliography
 \usepackage{cite}
-
+\usepackage{hyperref}
 %font
 %\usepackage[euler-digits, euler-hat-accent]{eulervm}
 %\usepackage{newpxtext}
@@ -41,26 +41,32 @@
 
 \DeclareMathOperator{\spec}{Spec}
 
+
 \begin{document}
 
 \maketitle
 \section{Introduction}
 
 In 1949 Andr\'e Weil, in the paper "Number of solutions of equations in finite fields", formulated his famous Weil-Conjectures
-which predicted certain deep properties of the Hasse-Weil zeta function for a Variety $X$ over a finite field $k = \mathbb{F}_q$ defined as
+which predicted certain deep properties of the Hasse-Weil zeta function for a variety $X$ over a finite field $k = \mathbb{F}_q$ defined as
 %XXX: spacing before last paren
 \[
-    Z(X,t) = exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \big)
+    Z(X,t) = \exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \big).
 \]
 %TODO: explain what rational points over bigger fields mean, in terms of solving equations 
 
 The rationality of the zeta function, the most basic of the three conjectures, was first established by Dwork. Grothendieck later gave another
-proof using his new scheme-theoretic approach to algebraic geometry.
+proof using his new scheme-theoretic approach to algebraic geometry. 
+
+%\begin{theorem}
+%    Let $X$ be a non-singular projective variety over a finite field $k = \mathbb{F}_q$. Then Z(X,t) is a rational function of t.
+%\end{theorem}
+
 Grothendieck's revolutionary new perspective was fundamental for the work of Deligne, who used these new methods to finally establish the 
-last part of the conjectures, an analouge of the Riemann hypothesis, in 1974.
+last part of the conjectures, an analogue of the Riemann hypothesis, in 1974.
 In \cite{kapranov} Kapranov generalized the Hasse-Weil zeta function, defining it not only for varieties over finite fields
 but varieties in general. It turns out that in this more general setting the zeta function isn't as well behaved in terms of rationality as
-the "classical" Hasse-Weil zetafunction and we will investigate this phenomen more closely in the case of complex surfaces, following the 
+the "classical" Hasse-Weil zetafunction and we will investigate this phenomena more closely in the case of complex surfaces, following the 
 work of Larsen and Lunts in \cite{MR1996804}.
 
 \begin{definition}
@@ -68,34 +74,34 @@ work of Larsen and Lunts in \cite{MR1996804}.
     We will write $\mathcal{V}_k$ for the category of $k$-varieties.
 \end{definition}
 
-We now want to motivate what the "right" generalization of the Hasse-Weil zeta function for varieties over a arbitrary field $k$ should be.
+We now want to motivate what a possible generalization of the Hasse-Weil zeta function for varieties over a arbitrary field $k$ should be.
 This part therefore, in some places, sacrifices mathematical precision for the sake of brevity.  
 We still give citations for most of the results and will of course develop everything that is important for the presentation and proof 
 of our main result in later sections in full detail.
 
-Two things don't generalize easily: the passing to bigger and bigger extensions of the ground field $k$ (what if $k$ is algebraically closed,
+Two things do not generalize easily: the passing to bigger and bigger extensions of the ground field $k$ (what if $k$ is algebraically closed,
 for example?), and counting $k$-rational points (again, if $k = \bar{k}$ there are, in general, a lot of $k$-rational points). 
 
 %XXX this section might be too much to develop in detail
-To see what could be generalizations for these phenomenas, 
+To see what could be generalizations for these phenomena, 
 we give another equivalent definition of the Hasse-Weil zeta function in terms of effective 0-cycles. 
 Recall that a 0-cycle on a Variety X is an element of the free abelian group over the closed 
 points of X. Such a cycle $\alpha = \sum_i n_i x_i$ is called \emph{effective} if the $n_i$ are greater than or equal to zero.
-The \emph{degree} of $\alpha$ is given by $deg(\alpha) = \sum_i n_i deg(x_i)$ ($deg(x_i)$ being the degree of the field extension $k(x_i)/k$).
+The \emph{degree} of $\alpha$ is given by $deg(\alpha) = \sum_i n_i deg(x_i)$ ($deg(x_i)$ being the degree of the field extension $\kappa(x_i)/k$).
 
 Using this notation we can rewrite the zeta function as follows 
 \begin{equation}
     Z(X,t) = \sum_{\alpha} t^{deg(\alpha)}
 \end{equation}
 Where the sum ranges over all 0-cycles on $X$.
-(For a proof of this (elementary) identity see for example Musta\c{t}\u{a}s great notes on zeta functions in algebraic geometry 
+(For a proof of this (elementary) identity see for example Musta\c{t}\u{a}'s great notes on zeta functions in algebraic geometry 
 \cite[Remark 2.9]{mustata})
 
 This definition still does not easily generalize, since for example $\mathbb{A}_{\mathbb{C}}^1$ has infinitely many 0-cycles of degree $n$.
 
 But counting degree zero cycles of a given degree $n$, is the same as counting $k$-rational points of the $n$-fold symmetric product of the 
 variety $X$ (denoted by $Sym^n(X)$).
-We won't formally introduce the symmetric product until later, but thinking of it as the quotient of 
+We will not formally introduce the symmetric product until later, but thinking of it as the quotient of 
 the $n$-fold product of $X$ with itself by the natural action of the symmetric group in $n$ letters gives the right intuition. 
 For $k$ algebraically closed, the bijection is obvious, since then the $k$-rational points are exactly the closed points. 
 Dividing out by the action of the symmetric product hence introduces the commutativity-relations we have if we consider formal sums
@@ -158,6 +164,8 @@ The cut and paste relation furthermore gives us
     0 = [\emptyset] - [\emptyset] = [\emptyset \setminus \emptyset] = [\emptyset]
 \]
 
+%TODO: remark about irreducible
+
 \begin{example}
     \label{projSum}
     Using the decomposition $\mathbb{P}_k^n = \mathbb{P}_k^{n-1} \coprod \mathbb{A}_k^n$ where $\mathbb{P}_k^{n-1}$ is a (closed) hyperplane
@@ -174,6 +182,21 @@ The cut and paste relation furthermore gives us
     By \cite[Proposition 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
     irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
 \end{remark}
+
+A deep structure theorem, which we will not prove here, was given by Bittner.
+
+%XXX: more about blowups?
+%XXX: which formulation is nicer: bittner or LL (used here)
+%XXX: switch order? first this theorem on structure of the grothendieck ring, then present the first main theorem
+%TODO: figure out why there is a space before the \cite 
+\begin{theorem}[Bittner, {\cite[Theorem 3.1]{Bittner}}] 
+    %XXX: possible different formulation: "\gring is, as an abelian group, is generated..."
+    The Grothendieck group $\gring[\mathbb{C}]$ is generated by classes of smooth complete varieties subject to relations of the form
+    \[
+        [X] - [f^{-1}(Z)] = [Y] - [Z]
+    \]
+    where $X$,$Y$ are smooth complete varieties and $f: X \to Y$ is a morphism which is a blowup with a smooth center $Z \subset Y$.
+\end{theorem}
 
 %XXX: More examples?
 %TODO: symmetric product
@@ -219,7 +242,11 @@ We will proof the following statement from \cite{MR1996804}
 
 \section{Constructing Motivic Measures}
 
-The first important result on the way to prove this is a way to construct motivic measures.
+We will now construct this measure $\mu$ for which we will show irrationality of the zeta function.
+
+The first important result on the way is a lemma that helps us to construct such measures by extending maps from the monoid of smooth, irreducible
+and complete varieties.
+
 %XXX: Maybe define monoid ring?
 \begin{theorem}
     \label{th1}
@@ -240,32 +267,50 @@ The first important result on the way to prove this is a way to construct motivi
     \]
 \end{theorem}
 
-To prove this result we will use a result by Bittner. 
-
-%XXX: more about blowups?
-%XXX: which formulation is nicer: bittner or LL (used here)
-%XXX: switch order? first this theorem on structure of the grothendieck ring, then present the first main theorem
-%TODO: figure out why there is a space before the \cite 
-\begin{theorem}[Bittner, {\cite[Theorem 3.1]{Bittner}}] 
-    %XXX: possible different formulation: "\gring is, as an abelian group, is generated..."
-    The Grothendieck group $\gring[\mathbb{C}]$ is generated by classes of smooth complete varieties subject to relations of the form
-    \[
-        [X] - [f^{-1}(Z)] = [Y] - [Z]
-    \]
-    where $X$,$Y$ are smooth complete varieties and $f: X \to Y$ is a morphism which is a blowup with a smooth center $Z \subset Y$.
-\end{theorem}
 %XXX: resolve all those whys
 %XXX: maybe rewrite the proof in a more "hands on" fashion to make clear why we check what we check and how \phi is defined
 %XXX: why is \phi multiplicative?
 \begin{proof}[Proof of theorem \ref{th1}]
-    We have to check that $\psi$ preserves the above relations, i.e. that $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$. 
-    But $[X]$ and $[Y]$ are birational since $f$ is a blowup. (WHY?)
+    We have to check that $\psi$ preserves the relations of the blowup presentation of $\gring[\mathbb{C}]$
+    , i.e. that $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$. 
+    But $[X]$ and $[Y]$ are birational since $f$ is a blowup.
     Now $f^{-1}(Z)$ is birational to $Z \times \mathbb{P}^n$ (WHY??) and thus 
     \[
         \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}^n]) = \psi([Z][\mathbb{P}^n]) = \psi([Z])\psi([\mathbb{P}^n) = \psi([Z])
     \]
     Hence we can linearly extend $\psi$ to define the morphism $\phi: \gring[\mathbb{C}] \to \mathbb{Z} [G]$
 \end{proof}
+
+Before constructing a suitable monoid homomorphism that will extend to our desired measure, we recall the definition of the Hodge numbers
+of a variety as well as two basic results (all these are excercises in \cite[Chapter II]{Ha}).
+
+\begin{definition}
+    Let $X$ be a projective variety. The $i$-th \emph{Hodge number} $h^{i,0}$ is given as the dimension of $H^0(X,\Omega^i_X)$
+    , which is a finite dimensional $k$-vectorspace by a theorem of Serre (\cite[§3 Prop. 7]{FAC})
+\end{definition}
+
+\begin{lemma}[{\cite[II Ex. 8.8]{Ha}}]
+    \label{bir}
+    The Hodge numbers are a birational invariant.
+\end{lemma}
+
+\begin{lemma}[Chow, {\cite[II Ex. 4.10]{Ha}}]
+    Every proper variety is birational to a projective variety.
+\end{lemma}
+
+\begin{definition}
+    Denote by $C \subset \mathbb{Z}[t]$ the multiplicative monoid of polynomials with a positive leading coefficient.
+    For a smooth projective complex variety $Z$ of dimension $d$ define
+    \[
+        \Psi_h(X) := 1 + h^{1,0}(X)t + \cdots + h^{d,0}(X)t^d \in C.
+    \]
+    Where the $h^{i,0} := \dim_k(H^0(X, \Omega^i_X)$ are the \emph{Hodge numbers} of $X$.
+    By Chow's Lemma we can also define $\Psi_h$ for a smooth complete variety $Z$ by choosing a smooth projective variety $X$ which is birational
+    to $Z$ and setting $\Psi_h(Z) := \Psi_h(X)$. This is well defined by lemma \ref{bir}.
+\end{defintion}
+
+We now check that $\Psi_h$ satisfies all conditions of theorem \ref{th1}. Independence of birational equivalence class was content of lemma
+\ref{bir}. 
 
 \section{Irrationality}
 
