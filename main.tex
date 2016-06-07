@@ -399,6 +399,7 @@ That we are able to do so is the content of the next lemma.
 \end{definition}
 
 \begin{lemma}
+    \label{same}
     Let $Y_1,\cdots,Y_s,Z$ be irreducible varieties of dimension d over a field of characteristic zero 
     such that $\mu_h([Z]) = \sum_i n_i \mu_h([Y_i])$ for some $n_i \in \mathbb{Z}$ and $P_g(Z) \neq 0$ then $P_g(Z) = P_g(Y_i)$ for some $i$
 \end{lemma}
@@ -425,6 +426,7 @@ Now let $X$ be a smooth projective surface with $P_g(X) \geq 2$. We will show th
 thus proving Theorem \ref{irrational}. We need one technical lemma about the genus of symmetric powers of X, which we can not proof here.
 
 \begin{lemma}[{\cite[Lem. 3.8]{MR1996804}}]
+    \label{genus}
     Let $X$ be a smooth, projective surface over $\mathbb{C}$. Then
     \[
         P_g(Sym^n(X)) = \binom{P_g(X) + n - 1}{P_g(X) - 1}
@@ -451,7 +453,25 @@ We will use the following rationality criterion for power series.
 \end{proof}
 
 \begin{proof}[Proof of Theorem \ref{irrational}]
-    Assume that $\zeta_{\mu_h}(X,t)$ is rational, hence 
+    Assume that $\zeta_{\mu_h}(X,t)$ is rational, hence by the above criterion there is a $n$ such that for $m$ big enough
+    \begin{equation}
+        \begin{split}
+        \sum_{\sigma \in S_{n+1}} \mu_h ( \prod_{i=1}^{n+1} Sym^{m + i + \sigma(i) - 2}) = 0  \\
+        \Leftrightarrow
+        \mu_h \Big ( \prod_{i=0}^n Sym^{m + 2i} \Big ) = - \sum_{\substack{\sigma \in S_{n+1} \\ \sigma \neq id}} 
+        \mu_h \Big ( \prod_{i=0}^n Sym^{m + i + \sigma(i+1) - 1}(X) \Big )
+    \end{split}
+    \end{equation}
+    Now we can apply Lemma \ref{same} to conclude that there is a permutation $\sigma$, not the identity permutation, such that
+    \[
+        P_g \Big(\prod_{i=0}^n Sym^{m+2i}(X)\Big) = P_g \Big( \prod_{i=0}^n Sym^{m+i+\sigma(i+1) - 1}(X) \Big)
+    \]
+    By Lemma \ref{genus} (and using the fact that the genus is multiplicative), we get
+    \[
+        \prod_{i=0}^n \binom{P_g(X) + m + 2i - 1}{P_g(X) - 1} - \prod_{i=0}^n \binom{P_g(X) + m + i + \sigma(i+1) - 2}{P_g(X) - 1} = 0
+    \]
+    By assumption $P_g(X) \geq 2$ hence the left hand side, considered as an polynomial in $m$, is not the zero polynomial. So by taking
+    $m$ large enough we obtain a contradiction.
 \end{proof}
 
 
