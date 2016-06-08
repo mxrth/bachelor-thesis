@@ -40,30 +40,32 @@
 \newcommand{\gring}[1][k]{K_0[\mathcal{V}_#1]}
 
 \DeclareMathOperator{\spec}{Spec}
-
+\DeclareMathOperator{\Sym}{Sym}
 
 \begin{document}
 
 \maketitle
 \section{Introduction}
 
-In 1949 Andr\'e Weil, in the paper \cite{weil1949}, formulated his famous Weil-Conjectures
-which predicted certain deep properties of the Hasse--Weil zeta function for a variety $X$ over a finite field $k = \mathbb{F}_q$ defined as
+In 1949 Andr\'e Weil, in the paper \cite{weil1949}, formulated his famous conjectures
+which predicted certain deep properties of the Hasse--Weil zeta function for a variety $X$ over a finite field $k = \mathbb{F}_q$. 
+The zeta function $Z(X,t) \in \mathbb{Q}[[t]]$ is defined as
 %XXX: spacing before last paren
 \[
     Z(X,t) = \exp \big(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \big).
 \]
 %TODO: explain what rational points over bigger fields mean, in terms of solving equations 
 
-The rationality of the zeta function, the most basic of the three conjectures, was first established by Dwork. Grothendieck later gave another
-proof for the case of smooth projective varieties using his new scheme-theoretic approach to algebraic geometry. 
+Dwork first established the rationality of the zeta function, the most basic of the three conjectures. 
+Later, using his new scheme theoretic approach to algebraic geometry, Grothendieck later gave another proof for the special case of 
+smooth projective varieties.
 
 %\begin{theorem}
 %    Let $X$ be a non-singular projective variety over a finite field $k = \mathbb{F}_q$. Then Z(X,t) is a rational function of t.
 %\end{theorem}
 
 Grothendieck's new perspective was fundamental for the work of Deligne, who used these new methods to finally establish the 
-last part of the conjectures, an analogue of the Riemann hypothesis, in 1974.
+last part of the conjectures, an analogue of the Riemann hypothesis, in 1974 (\cite{MR0340258}).
 In \cite{kapranov} Kapranov generalized the Hasse-Weil zeta function, defining it not only for varieties over finite fields
 but varieties in general. It turns out that in this more general setting the zeta function is not as well behaved in terms of rationality as
 the "classical" Hasse--Weil zeta function and we will investigate this phenomena more closely in the case of complex surfaces, following the 
@@ -96,7 +98,7 @@ Where the sum ranges over all effective 0-cycles on $X$.
 This definition still does not easily generalize, since for example $\mathbb{A}_{\mathbb{C}}^1$ has infinitely many 0-cycles of degree $n$.
 
 But counting degree zero cycles of a given degree $n$, is the same as counting $k$-rational points of the $n$-fold symmetric product of the 
-variety $X$ (denoted by $Sym^n(X)$).
+variety $X$ (denoted by $\Sym^n(X)$).
 We will not formally introduce the symmetric product until later, but thinking of it as the quotient of 
 the $n$-fold product of $X$ with itself by the natural action of the symmetric group in $n$ letters gives the right intuition. 
 For $k$ algebraically closed, the bijection is obvious, since then the $k$-rational points are exactly the closed points. 
@@ -104,11 +106,14 @@ Dividing out by the action of the symmetric group hence introduces the commutati
 of such closed points. This intuition carries over for the case of finite fields, hence we get
 
 \begin{equation}
-    Z(X,t) = \sum_{n} |Sym^n(X)(k)| t^n.
+    Z(X,t) = \sum_{n} |\Sym^n(X)(k)| t^n.
 \end{equation}
 
 So, in some rough sense, we are "measuring" the size of bigger and bigger symmetric products of X, so we expect the symmetric product
 to make an apearance in our generalized zeta function, taking the role of counting solutions over bigger and bigger field-extensions.
+
+
+\section{The Grothendieck Ring of Varieties and Motivic Measures}
 
 We now collect some properties of counting rational points of a variety over a finite field, that will guide our definition for "measures" 
 of the symmetric product.
@@ -128,11 +133,8 @@ of the symmetric product.
     \end{enumerate}
 \end{remark}
 
-%XXX: move into next section?
 
-\section{The Grothendieck Ring of Varieties and Motivic Measures}
-
-We now construct the Grothendieck ring of varieties as the universal ring over which any map with these properties factors as a 
+This motivates the construction of the Grothendieck ring of varieties as the universal ring over which any map with these properties factors as a 
 ring homomorphism. Then our generalized measures will simply be ring homomorphisms out of this universal ring.
 
 \begin{definition}
@@ -151,9 +153,9 @@ ring homomorphism. Then our generalized measures will simply be ring homomorphis
     \] where Y is closed in X.
     With multiplication given by
     \[
-        [X][Y] = [X \times Y]
+        [X][Y] = [X \times Y].
     \]
-    this forms a ring, called the \emph{Grothendieck ring of varieties} and denoted by $\gring$. 
+    This forms a ring, called the \emph{Grothendieck ring of varieties} and denoted by $\gring$. 
     
     A \emph{motivic measure} with values in a ring $A$ is a ring homomorphism $\mu \colon \gring \to A$. The identity function
     $id \colon \gring \to \gring$ is called the \emph{universal motivic measure}.
@@ -165,7 +167,6 @@ The cut and paste relation furthermore gives us
     0 = [\emptyset] - [\emptyset] = [\emptyset \setminus \emptyset] = [\emptyset]
 \]
 
-%TODO: remark about irreducible
 
 \begin{example}
     \label{projSum}
@@ -186,7 +187,7 @@ The cut and paste relation furthermore gives us
 \end{remark}
 
 We now investigate the structure of the Grothendieck ring. First we note that it suffices to take irreducible varieties to generate $\gring[k]$
-To see this, take a variety $X$ with irreducible componets $Y_1, \cdots, Y_k$ and set ${U_i \coloneqq Y_i \setminus \bigcup_{i \neq j} Y_j}$ and
+To see this, take a variety $X$ with irreducible componets $X_1, \cdots, X_k$ and set ${U_i \coloneqq X_i \setminus \bigcup_{i \neq j} X_j}$ and
 $U \coloneqq \bigcup_i U_i$. By construction, the last union is actually a disjoint union, and hence $[U] = \sum_i [U_i]$. Together this gives
 \[
     [X] = [X \setminus U] + \sum_i [U_i].
@@ -197,25 +198,32 @@ just a collection of points.
 
 In characteristic zero we can use a weak form of Hironaka's Theorem on the resolution of singularites, namely that for every irreducible, 
 projective variety $X$ there is a smooth, projective variety that is birational to $X$ to restrict the set of needed generators even more. 
+This observation culminates in a structure theorem about the Grothendieck ring proven by Bittner in \cite{Bittner}
 %TODO: cite hironaka
 
 
-\begin{lemma}
+\begin{theorem}[Bittner, {\cite[Thm. 3.1]{Bittner}}]
     Let $k$ be a field of charakteristic zero. Then $\gring[k]$ is generated by smooth, integral, projective varieties.
-\end{lemma}
+    Furthermore, if $k$ is algebraically closed, it suffices to consider relations of the form
+    \[
+        [X] - [f^{-1}(Z)] = [Y] - [Z]
+    \]
+    where $X$,$Y$ are smooth complete varieties and $f \colon X \to Y$ is a morphism which is a blowup with a smooth center $Z \subset Y$.     
+\end{theorem}
 \begin{proof}
+    We will only proof the first part of the statement.
     As remarked before, we can restrict our attention to irreducible varietes.  We once again argue by induction on the dimension.
     So let $X$ be a irreducible variety of dimension $n$, by choosing some nonempty affine subvariety and passing to its projective closure we
     find $X'$ projective, irreducible and birational to $X$. Resolving singularities we find $\widetilde{X}$ smooth, projective, irreducible
     birational to $X$. Hence we find isomorphic open subset $U \subset X$, $V \subset \widetilde{X}$ hand hence
     \[
-        [X \setminus U ] - [\widetilde{X} \setminus V] = [X] - [U] - [\widetilde{X}] - [V] = [X] - [\widetilde{X}]
+        [X \setminus U ] - [\widetilde{X} \setminus V] = [X] - [U] - [\widetilde{X}] - [V] = [X] - [\widetilde{X}].
     \]
-    Hence $[X]$ can be written as the sum of $[\widetilde{X}]$ and some varieties of lower dimension for which we can invoke the induction
+    Thus $[X]$ can be written as the sum of $[\widetilde{X}]$ and some varieties of lower dimension for which we can invoke the induction
     hypothesis.
 \end{proof}
 
-We will use the slightly stronger conclusion we just used in the induction, hence we state it as a separate corollary.
+We will use the slightly stronger conclusion we just shown, hence we state it as a separate corollary.
 
 \begin{corollary}
     \label{decomp}
@@ -224,20 +232,7 @@ We will use the slightly stronger conclusion we just used in the induction, henc
     smaller than the dimension of $X$.
 \end{corollary}
 
-A deeper structure theorem, which we will not prove here, was given by Bittner.
 
-%XXX: more about blowups?
-%XXX: which formulation is nicer: bittner or LL (used here)
-%XXX: switch order? first this theorem on structure of the grothendieck ring, then present the first main theorem
-%TODO: figure out why there is a space before the \cite 
-\begin{theorem}[Bittner, {\cite[Thm. 3.1]{Bittner}}] 
-    %XXX: possible different formulation: "\gring is, as an abelian group, is generated..."
-    The Grothendieck group $\gring[\mathbb{C}]$ is generated by classes of smooth complete varieties subject to relations of the form
-    \[
-        [X] - [f^{-1}(Z)] = [Y] - [Z]
-    \]
-    where $X$,$Y$ are smooth complete varieties and $f \colon X \to Y$ is a morphism which is a blowup with a smooth center $Z \subset Y$.
-\end{theorem}
 
 %XXX: More examples?
 %TODO: symmetric product
@@ -252,7 +247,7 @@ A deeper structure theorem, which we will not prove here, was given by Bittner.
     Let $\mu \colon \gring \to A$ be a motivic measure and $X$ a variety. Then we define the \emph{motivic zeta function} 
     $\zeta_{\mu}(X,t) \in A[[t]]$ as
     \[
-        \zeta_{\mu}(X,t) \coloneqq \sum_{n=0}^\infty \mu([Sym^n(X)])t^n
+        \zeta_{\mu}(X,t) \coloneqq \sum_{n=0}^\infty \mu([\Sym^n(X)])t^n
     \]
 \end{definition}
 
@@ -260,7 +255,7 @@ A deeper structure theorem, which we will not prove here, was given by Bittner.
     We can now compute a first zeta function, namely $\zeta_{id}(\mathbb{P}_k^1, t)$. Using the identity and notation from example \ref{projSum}
     we calculate
     \begin{align*}
-        \zeta_{id}(\mathbb{P}_k^1, t) & = \sum_{n=0}^\infty [Sym^n({\mathbb{P}_k^1})]t^n 
+        \zeta_{id}(\mathbb{P}_k^1, t) & = \sum_{n=0}^\infty [\Sym^n({\mathbb{P}_k^1})]t^n 
                                        = \sum_{n=0}^\infty \big(\sum_{k=0}^n \mathbb{L}^k\big) t^n \\
                                        & = \sum_{n=0}^\infty \sum_{k=0}^n (\mathbb{L}t)^k t^{n-k} \\
                                       & = \Big( \sum_{n=0}^\infty t^n \Big) \Big( \sum_{n=0}^\infty (\mathbb{L}t)^n \Big) 
@@ -308,14 +303,18 @@ and complete varieties.
     \]
 \end{theorem}
 
-%XXX: resolve all those whys
 %XXX: maybe rewrite the proof in a more "hands on" fashion to make clear why we check what we check and how \phi is defined
 %XXX: why is \phi multiplicative?
-\begin{proof}[Proof of Theorem \ref{th1}]
+\begin{proof}
     We have to check that $\psi$ preserves the relations of the blowup presentation of $\gring[\mathbb{C}]$
-    , i.e.\ that $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$. 
+    , i.e.\ given a blow-up $f \colon X \to Y$ with smooth center $Z \in X$ then $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$  
     But $[X]$ and $[Y]$ are birational since $f$ is a blowup.
-    Now $f^{-1}(Z)$ is birational to $Z \times \mathbb{P}^n$ (WHY??) and thus 
+    
+    Now since $X$ and $Z$ are nonsingular the $f^{-1}(Z)$ is the projective space bundle  $\mathbb{P}(\mathcal{I}/\mathcal{I}^2)$ 
+    where $\mathcal{I}$ is the ideal sheaf associated to $Z$ (see for example \cite{Ha}[II.8, Thm 8.24]),
+    which is a $\mathbb{P}^n$-bundle, i.e.\ locally trivializes to $\mathbb{P}_k^n \times U$ for some $U \subset Z$ open 
+    and hence is birational to $\mathbb{P}_k^n \times Z$. 
+    We can thus write $\psi([f^{-1}(Z)])$ as  
     \[
         \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}^n]) = \psi([Z][\mathbb{P}^n]) = \psi([Z])\psi([\mathbb{P}^n) = \psi([Z])
     \]
@@ -334,7 +333,8 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
 
 \begin{lemma}[{\cite[II Ex. 8.8]{Ha}}]
     \label{bir}
-    The Hodge numbers $h^{i,0}$ are a birational invariant of a variety.
+    The Hodge numbers $h^{i,0}$ are a birational invariant of a variety: let $X, Y$ be birationally equivalent, smooth, projective varieties
+    then $h^{i,0}(X) = h^{i,0}(Y)$.
 \end{lemma}
 
 \begin{lemma}[Chow, {\cite[II Ex. 4.10]{Ha}}]
@@ -347,6 +347,8 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
     \[
         \Psi_h(X) := 1 + h^{1,0}(X)t + \cdots + h^{d,0}(X)t^d \in C.
     \]
+    (Note that the Hodge numbers might be zero, but $\Psi_h(X)$ still has a positive leading coefficient, 
+    just its degree might be smaller than the dimension of $Z$)
     By Chow's lemma we can also define $\Psi_h$ for a smooth complete variety $Z$ by choosing a smooth projective variety $X$ which is birational
     to $Z$ and setting $\Psi_h(Z) := \Psi_h(X)$. This is well defined by Lemma \ref{bir}.
 \end{definition}
@@ -384,7 +386,7 @@ That we are able to do so is the content of the next lemma.
 \begin{proof}
     Since $A$ is factorial, every $s \in S$ has a unique factorization, and since 1 is the only unit in $S$, 
     $s$ can be uniquely written as product of prime elements, hence if we take $B$ to be the polynomial ring over the formal
-    variables $\{x_s | s \in S, s prime\}$ we get an isomorphism of rings
+    variables $\{x_s | s \in S, s\ \text{prime}\}$ we get an isomorphism of rings
     \begin{align*}
         B &\to \mathbb{Z}[S] \\
         x_s &\mapsto s
@@ -409,27 +411,28 @@ That we are able to do so is the content of the next lemma.
     \[
         \mu_h([\overline{Z}]) = \sum n_i\mu_h([\overline{Y}_i]) + \sum l_i \mu_h([X_i])
     \]
-    With the $X_i$ being smooth irreducible varieties of dimension $<d$.
+    the $X_i$ being smooth irreducible varieties of dimension $<d$.
     But now, since $\mu_h$ was obtained as an extension of $\Psi_h$ which was defined on smooth, irreducible, projective varieties, this is
     actually an equation in $\mathbb{Z}[C]$, namely
     \[
         \Psi_h(\overline{Z}) = \sum n_i \Psi_h(\overline{Y}_i) + \sum l_i\Psi_h(X_i)
     \]
-    Since there are no (additive) relations between elements of $C$ in the monoid ring, one of the polynomials $\Psi_h(\dots)$ must actually
-    be the polynomial on the left hand side, but with the dimension of $X_i$ being strictly smaller than that of $Z$ and the assumption that
-    $P_g(\overline{Z}) = h^{d,0}(\overline{Z}) \neq 0$ it can not be one of the $\Psi_h(X_i)$ because all these polynomials have strictly smaller
-    degree. Hence we have $\Psi_h(\overline(Z)) = \Psi_h(\overline{Y}_i)$ and in particular, since they are of the same dimension, the genus of
+    Since there are no (additive) relations between elements of $C$ in the monoid ring, one of the polynomials $\Psi_h(\dots)$ on the 
+    left hand side, must actually be the polynomial on the left hand side, but with the dimension of 
+    $X_i$ being strictly smaller than that of $Z$ and the assumption that
+    $P_g(\overline{Z}) = h^{d,0}(\overline{Z}) \neq 0$ it cannot be one of the $\Psi_h(X_i)$ because all these polynomials have strictly smaller
+    degree. Hence we have $\Psi_h(\overline{Z}) = \Psi_h(\overline{Y}_i)$ for some $i$ and in particular, since they are of the same dimension, the genus of
     $\overline{Z}$ and $Y_i$ must agree.
 \end{proof}
 
 Now let $X$ be a smooth projective surface with $P_g(X) \geq 2$. We will show that $\zeta_{\mu_h}(X,t) \in \mathcal{H}[[t]]$ is not rational,
-thus proving Theorem \ref{irrational}. We need one technical lemma about the genus of symmetric powers of X, which we can not proof here.
+thus proving Theorem \ref{irrational}. We need one technical lemma about the genus of symmetric powers of X, which we cannot proof here.
 
 \begin{lemma}[{\cite[Lem. 3.8]{MR1996804}}]
     \label{genus}
     Let $X$ be a smooth, projective surface over $\mathbb{C}$. Then
     \[
-        P_g(Sym^n(X)) = \binom{P_g(X) + n - 1}{P_g(X) - 1}
+        P_g(\Sym^n(X)) = \binom{P_g(X) + n - 1}{P_g(X) - 1}
     \]
 \end{lemma}
 
@@ -456,15 +459,15 @@ We will use the following rationality criterion for power series.
     Assume that $\zeta_{\mu_h}(X,t)$ is rational, hence by the above criterion there is a $n$ such that for $m$ big enough
     \begin{equation}
         \begin{split}
-        \sum_{\sigma \in S_{n+1}} \mu_h ( \prod_{i=1}^{n+1} Sym^{m + i + \sigma(i) - 2}) = 0  \\
+            \sum_{\sigma \in S_{n+1}} \mu_h ( \prod_{i=1}^{n+1} \Sym^{m + i + \sigma(i) - 2}(X)) = 0  \\
         \Leftrightarrow
-        \mu_h \Big ( \prod_{i=0}^n Sym^{m + 2i} \Big ) = - \sum_{\substack{\sigma \in S_{n+1} \\ \sigma \neq id}} 
-        \mu_h \Big ( \prod_{i=0}^n Sym^{m + i + \sigma(i+1) - 1}(X) \Big )
+        \mu_h \Big ( \prod_{i=0}^n \Sym^{m + 2i}(X) \Big ) = - \sum_{\substack{\sigma \in S_{n+1} \\ \sigma \neq id}} 
+        \mu_h \Big ( \prod_{i=0}^n \Sym^{m + i + \sigma(i+1) - 1}(X) \Big )
     \end{split}
     \end{equation}
     Now we can apply Lemma \ref{same} to conclude that there is a permutation $\sigma$, not the identity permutation, such that
     \[
-        P_g \Big(\prod_{i=0}^n Sym^{m+2i}(X)\Big) = P_g \Big( \prod_{i=0}^n Sym^{m+i+\sigma(i+1) - 1}(X) \Big)
+        P_g \Big(\prod_{i=0}^n \Sym^{m+2i}(X)\Big) = P_g \Big( \prod_{i=0}^n \Sym^{m+i+\sigma(i+1) - 1}(X) \Big)
     \]
     By Lemma \ref{genus} (and using the fact that the genus is multiplicative), we get
     \[
