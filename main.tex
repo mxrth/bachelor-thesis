@@ -9,6 +9,7 @@
 %bibliography
 \usepackage[noadjust]{cite}
 \usepackage{hyperref}
+\usepackage{enumitem}
 %font
 %\usepackage[euler-digits, euler-hat-accent]{eulervm}
 %\usepackage{newpxtext}
@@ -50,14 +51,14 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 \section{Introduction}
 
 In 1949 Andr\'e Weil, in the paper \cite{weil1949}, formulated his famous conjectures
-which predicted certain deep properties of the Hasse--Weil zeta function for a variety $X$ over a finite field $k = \mathbb{F}_q$. 
-The zeta function $Z(X,t) \in \mathbb{Q}[[t]]$ is defined as
-%XXX: spacing before last paren
+which predicted certain deep properties of the Hasse--Weil zeta function $Z(X,t)$ for a variety $X$ over a finite field $k = \mathbb{F}_q$. 
+which is defined as
 \[
-    Z(X,t) = \exp \left(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \right).
+    Z(X,t) = \exp \left(\sum_{m=0}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m} t^m \ \right) \in \mathbb{Q}[[t]].
 \]
 
 Dwork first established the rationality of the zeta function, the most basic of the three conjectures. 
@@ -70,17 +71,18 @@ smooth projective varieties.
 
 In \cite{kapranov} Kapranov generalized the Hasse--Weil zeta function, defining it not only for varieties over finite fields
 but varieties in general. The construction takes place in the so called \emph{Grothendieck ring of varieties} $\gring[k]$ over some field $k$, 
-which consists of isomorphism classes of varieties subject to some additional relations (for the complete definition see TODO), and is given
-as 
+which consists of isomorphism classes of varieties subject to some additional relations 
+(see Definition \ref{gringdef}), and is given as 
 \[
     Z_{\mu}(X,t) \coloneqq \sum_{n=0}^{\infty} \mu \left( \left[ \Sym^n(X) \right] \right) t^n
 \]
-where $\mu$ is a ring homomorphism from $\gring[k]$ to some arbitrary ring (also called a \emph{motivic measure}).
+where $\mu$ is a ring homomorphism from $\gring[k]$ to some arbitrary ring (also called a \emph{motivic measure}). 
+And $Sym^n(X)$ is the $n$-fold symmetric product of $X$ (see Definition \ref{symdef}). 
 It is a natural question to ask if this zeta function is still a rational function (at least if $\mu$ takes values in a field).
-Kapranov was able to prove this for smooth projective curves (\cite{kapranov}[TODO]) and conjectured that it is true in general.
+Kapranov proved this for smooth projective curves (\cite[Thm 1.1.9]{kapranov}) and conjectured that it is true in general.
 %TODO: really start a sentence with BUT?
 But it turns out that in this more general setting the zeta function is not as well behaved in terms of rationality as in the classical case:
-Larsen and Lunts show in \cite{MR1996804} that the zeta function even fails to be rational for surfaces when working over $\mathbb{C}$.
+Larsen and Lunts showed in \cite{MR1996804} that the zeta function fails to be rational for complex surfaces.
 
 \begin{theorem}[{\cite[Thm. 1.6]{MR1996804}}]
 \label{irrational}
@@ -90,12 +92,28 @@ then the zeta-function $\zeta_{\mu_h}(X,t)$ is not a rational function.
 \end{theorem}
 
 In this thesis we will first introduce the Grothendieck ring in Section \ref{sec1} and investigate its structure. 
-This section culminates in a structure theorem due to Bittner (\cite{Bittner}) which will allow us to simplify the original proof by 
-Larsen and Lunts substantially.
+This culminates in a structure theorem due to Bittner (\cite[Thm 3.1]{Bittner}) which will allow us to substantially simplify the original 
+proof by Larsen and Lunts.
 The second section is devoted to the definition of the motivic zeta function, which entails defining and giving examples for the symmetric 
 product. There we will also see the connection between the classical Hasse--Weil zeta function and the motivic one.
-Construction of the motivic measure $\mu_h$ under wich $Z_{\mu_h}(X,t)$ becomes irrational is content of Section TODO while irrationality
+Construction of the motivic measure $\mu_h$ under wich $Z_{\mu_h}(X,t)$ becomes irrational is content of Section \ref{const} while irrationality
 is then finally proven in the last section.
+
+\section{German Summary}
+In dieser Bachelorarbeit soll ein Resultat von Larsen und Lunts (\cite{MR1996804}) über die rationalität der motivischen Zetafunktion
+bewiesen werden. Die Motivische Zetafunktion ist eine Verallgemeinerung der Hasse--Weil Zetafunktion für Varietäten über endlichen Körpern
+im Kontext des Grothendieckrings der Varietäten $\gring[k]$ über Isomorphieklassen von Varietäten zwischen denen gewissen Relationen bestehen
+(Siehe \ref{gringdef} für die genaue Definition). 
+Diese motivische Zetafunktion ist, im Gegensatz zur Hasse-Weil Zetafunktion, im allgemeinen nicht rational. 
+Konkret werden wir folgendes Resultat zeigen.
+\begin{theorem}[{\cite[Thm. 1.6]{MR1996804}}]
+Sei $k = \mathbb{C}$. Dann existiert ein Körper $\mathcal{H}$ und ein Ringhomomorphismus $\mu_h \colon \gring to \mathcal{H}$ mit der folgenden
+Eigenschaft: Falls $X$ eine glatte, projektive, komplexe Fläche mit geometrischem Genus $P_g(X) = h^{2,0}(X)$ mindestens 2, dann ist die
+motivische Zetafunktion $\zeta_{\mu_h}(X,t)$ nicht rational.
+\end{theorem}
+Wir werden ein Theorem von Bittner (\cite{Bittner}) um den Ursprünglichen Beweis deutlich kompakter darstellen zu können.
+
+
 
 %We now want to motivate what a possible generalization of the Hasse-Weil zeta function for varieties over a arbitrary field $k$ could be.
 %This part therefore, in some places, sacrifices mathematical precision for the sake of brevity.  
@@ -147,6 +165,7 @@ is then finally proven in the last section.
 \end{definition}
 
 \begin{definition}
+    \label{gringdef}
     Let $k$ be a perfect field. 
     Consider the abelian group of formal linear combinations of isomorphism classes of varieties, subject to relations of the form
     \[
@@ -163,16 +182,16 @@ is then finally proven in the last section.
 \end{definition}
 
 The reason that we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
-$k = k_0(t)$ with $\chara k = p$ and $X = \Spec(k[x]/(x^p - t))$, $Y \coloneqq \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
-$X$ is a variety since $x^p - t$ is irreducible, hence $X$ is reduced. But the product can be described as
+$k = k_0(t)$ with $\mathrm{char} k_0 = p$ and $X = \Spec(k[x]/(x^p - t))$, $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
+$X$ is a variety since $x^p - t$ is irreducible in $k_0(t)$. The product, on the other hand, can be described as
     \[
-        X \times Y = \Spec(K[x]/(x^p -t)) = \Spec(K[X]/((x-t^{\frac{1}{p}})^p).
+        X \times Y = \Spec(K[x]/(x^p -t)) = \Spec(K[X]/((x-t^{\frac{1}{p}})^p)
     \]
-And hence is not reduced. We might adapt the defintion to this case by changing the defintion of the product to 
+which is not reduced. We might adapt the defintion to this case by changing the defintion of the product to 
 $[X][Y] \coloneqq [(X \times Y)_{\text{red}}]$, taking the induced reduced scheme structure on $X \times Y$, but since we are only working
-in characteristic zero or over finite fields we will not bother with this technical issue any more.
+in characteristic zero or over finite fields we will not bother with this technical issue.
 
-Since the product is commutative up to isomorphism this is a commutative ring with 1 (equal to $[\Spec(k)]$). 
+Since the product of varities is commutative up to isomorphism this is a commutative ring with 1 (equal to $[\Spec(k)]$). 
 The cut and paste relation furthermore gives us
 \[
     0 = [\emptyset] - [\emptyset] = [\emptyset \setminus \emptyset] = [\emptyset]
@@ -184,6 +203,7 @@ The cut and paste relation furthermore gives us
         \psi \colon \mathcal{V}_k & \to   \mathbb{Z}\\
         X & \mapsto |X(k)|
     \end{align*}
+    Observe that $\psi$ has the following properties:
     \begin{enumerate}
         \item If $X$ and $Y$ are isomorphic $k$-varieties, then $\psi(X) = \psi(Y)$.
         \item If $Y \subset X$ is closed subvariety, then $\psi(X \setminus Y) = \psi(X) - \psi(Y)$.
@@ -224,7 +244,7 @@ To see this, take a variety $X$ with irreducible componets $X_1, \dots, X_n$ and
 $U \coloneqq \bigcup_i U_i$. By construction, the last union is actually a disjoint union, and hence $[U] = \sum_i [U_i]$. Together this gives
 \[
     [X] = [X \setminus U] + \sum_i [U_i].
-\] Now the $U_i$ are irreducible as open subsets of irreducible sets, and $[X \setminus U]$ has dimension
+\] Now the $U_i$, as open subsets of irreducible sets, are irreducible and $[X \setminus U]$ has dimension
 strictly smaller than the dimension of $X$ since we removed a proper open subset from each irreducible component. Hence we can inductively
 rewrite $[X \setminus U]$, loosing at least one dimension in each step, with the base case of $\dim  X = 0$ being trivial, as $X$ is then
 just a collection of points.
@@ -235,9 +255,9 @@ This observation culminates in a structure theorem about the Grothendieck ring p
 %TODO: cite hironaka
 
 
-\begin{theorem}[Bittner, {\cite[Thm. 3.1]{Bittner}}]
+\begin{theorem}[{\cite[Thm. 3.1]{Bittner}}]
     \label{bittner}
-    Let $k$ be a field of charakteristic zero. Then $\gring[k]$ is generated by smooth, integral, projective varieties.
+    Let $k$ be a field of characteristic zero. Then $\gring[k]$, as an abelian group, is generated by smooth, integral, complete varieties.
     Furthermore, if $k$ is algebraically closed, it suffices to consider relations of the form
     \[
         [X] - [f^{-1}(Z)] = [Y] - [Z]
@@ -247,7 +267,7 @@ This observation culminates in a structure theorem about the Grothendieck ring p
 \begin{proof}
     We will only proof the first part of the statement.
     As remarked before, we can restrict our attention to irreducible varietes.  We once again argue by induction on the dimension.
-    So let $X$ be an irreducible variety of dimension $n$, by choosing some nonempty affine subvariety and passing to its projective closure we
+    Let $X$ be an irreducible variety of dimension $n$, by choosing some nonempty affine subvariety and passing to its projective closure we
     find $X'$ projective, irreducible and birational to $X$. Resolving singularities we find $\widetilde{X}$ smooth, projective, irreducible
     birational to $X$. Hence we find isomorphic open subset $U \subset X$, $V \subset \widetilde{X}$ hand hence
     \[
@@ -261,9 +281,9 @@ We will use the slightly stronger conclusion we just shown, hence we state it as
 
 \begin{corollary}
     \label{decomp}
-    For each (irreducible) variety $X$ there exists a smooth, irreducible, projective variety $Y$ birational
+    For each (irreducible) variety $X$ over a field of characteristic zero there exists a smooth, irreducible, projective variety $Y$ birational
     to $X$ such that $[X] = [Y] + \sum_i^N m_i[W_i]$ where the $[W_i]$ are smooth, irreducible, projective varieties of dimension strictly
-    smaller than the dimension of $X$.
+    smaller than the dimension of $X$. \qed
 \end{corollary}
 
 
@@ -284,26 +304,30 @@ action of the symmetric group.
     Let $X$ be a $S$-Scheme, $G$ a group acting on $X$ via $S$-automorphisms (i.e there is a group homomorphism $\sigma \colon G \to Aut_S(X)$,
     we also write $\sigma_g$ for the image of $g$ under $\sigma$.) 
     Then a variety $Y$ together with a morphism $\pi \colon X \to Y$
-    over $S$ is called the quotient (also denoted by $\faktor{X}{G}$) of $Y$ by $G$ if $\pi$ is $G$-invariant for all $g \in G$ 
+    over $S$ is called the quotient (also denoted by $X/G$) of $Y$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
     $\pi \circ g = \pi$ and is universal in this respect, i.e. for every other $G$-invariant morphism $f \colon X \to Z$ there exists a unique
     $G$-invariant morphism $g \colon Z \to Y$that makes the following diagram commute
     \begin{equation*}
         \begin{tikzcd}
             X \arrow{r}{f} \arrow{d}{\pi} & X/G \\
             Z \arrow[dashrightarrow]{ur}{g}
-        \end{tikzcd}
+        \end{tikzcd}.
     \end{equation*}
 \end{definition}
 
-We first construct the quotient in the affine case. Assume $X = Spec(A)$ with $G$ acting on $X$ (from the right) via automorphisms.
-By the equivalence of categories between affine schemes and commutative rings, we get a left-action of $G$ on $A$, and we simply get the quotient
-as the affine scheme $X \to X/G = Spec(A^G)$ coming from the subring of $G$-invariant elements, together with the natural inclusion $A^G \to A$.
-By construction this is the categorial quotient defined above.
+We first construct the quotient in the affine case.
+\begin{lemma}
+    Let $X = \Spec{A}$ be an affine variety with a group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
+    is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
+\end{lemma}
+\begin{proof}
+    TODO
+\end{proof}
 
 We now turn to a relevant special case: the quotient of an quasiprojective variety $X$ by the action of a finite group $G$, using the following
-abstract result from \cite{SGA1}
+general result from \cite{SGA1}
 
-\begin{lemma}[{\cite{SGA1}[Prop. 1.8]}]    
+\begin{lemma}[{\cite[Prop. 1.8]{SGA1}}]    
     Let $X$ be a scheme with a finite group $G$ acting on it via automorphisms. If there exists an open cover by $G$-invariant affine sets
     then the quotient $X/G$ exists.
     We call such an action \emph{admissible}
@@ -315,24 +339,25 @@ abstract result from \cite{SGA1}
 \begin{proof}
     Let $X \subset \mathbb{P}_k^n$ be locally closed with a finite group $G = \{g_1,\cdots,g_m\}$ acting on it. 
     Consider the orbit $\{g_1(x),\cdots,g_m(x)\} \subset X$ of a point $x \in X$, and denote by $\mathfrak{p}_1,\cdots,\mathfrak{p}_m$ the 
-    corresponding graded prime ideals corresponding to $\bar{\{x\}}$, and by $\mathfrak{q}$ the graded prime ideal corresponding to
-    $\bar{X} \setminus X$ (taken to be the irrelevant ideal if this set is empty). 
+    corresponding graded prime ideals corresponding to $\overline{\{x\}}$, and by $\mathfrak{q}$ the graded prime ideal corresponding to
+    $\overline{X} \setminus X$ (taken to be the irrelevant ideal if this set is empty). 
     Hence the ideal $\mathfrak{q}$ is not contained in any of the $\mathfrak{p}_i$s hence, by the graded version of the prime
     avoidance lemma we find an element with positive degree $y \in \mathfrak{q}$ that is contained in none of the $\mathfrak{p}_i$ and hence
     the hypersurface $V_+(y)$ contains $\bar{X} \setminus X$ but not the $g_1(x),\cdots,g_m(x)$, so $U \coloneqq D_+(y)$ 
-    is an affine set that lies in $X$ and contains the orbit of $x$ under $G$. Now consider $U' \coloneq \cap_{g \in G} g(U)$. This is clearly
-    $G$-invariant, and since $U$ contained the orbit of $y$ we still find that $y$ lies in $U'$. Hence we have found a open cover by
-    $G$-invariant affine sets, and thus the quotient exists by the above lemma.
+    is an affine set that lies in $X$ and contains the orbit of $x$ under $G$. Now consider $U' \coloneqq \bigcap_{g \in G} g(U)$. This is clearly
+    $G$-invariant, and since $U$ contains the orbit of $y$ we still find that $y$ lies in $U'$. Hence we have found a open cover of X by
+    $G$-invariant open affines, and thus the quotient exists by the above lemma.
 \end{proof}
 
-\begin{remark}
-    If $X = \Proj(S)$ and the $G$-action is a \emph{graded} action (i.e. the induced action on $S$ respects the grading, we may construct
-    the quotient, like in the affine case, as $X/G = \Proj(S^G)$
-\end{remark}
+%\begin{remark}
+%    If $X = \Proj(S)$ and the $G$-action is a \emph{graded} action (i.e. the induced action on $S$ respects the grading, we may construct
+%    the quotient, like in the affine case, as $X/G = \Proj(S^G)$
+%\end{remark}
 
 \begin{definition}
+    \label{symdef}
     Let $X$ be a quasiprojective variety, then the $n$-fold \emph{symmetric product} $\Sym^n(X)$ is defined as the quotient of $X^n$
-    (which is again quasiprojective via the Segre-Embedding) by the natural action of the symmetric group in $n$ letters.
+    (which is again quasiprojective via the Segre embedding) by the natural action of the symmetric group in $n$ letters.
 \end{definition}
 
 \begin{example}
@@ -340,7 +365,7 @@ abstract result from \cite{SGA1}
 \end{example}
 
 \begin{definition}
-    Let $\mu \colon \gring \to A$ be a motivic measure and $X$ a variety. Then we define the \emph{motivic zeta function} 
+    Let $\mu \colon \gring \to A$ be a motivic measure and $X$ a quasiprojective variety. Then we define the \emph{motivic zeta function} 
     $\zeta_{\mu}(X,t) \in A[[t]]$ as
     \[
         \zeta_{\mu}(X,t) \coloneqq \sum_{n=0}^\infty \mu([\Sym^n(X)])t^n
@@ -351,10 +376,10 @@ abstract result from \cite{SGA1}
     We can now compute a first zeta function, namely $\zeta_{id}(\mathbb{P}_k^1, t)$. Using the identity and notation from example \ref{projSum}
     we calculate
     \begin{align*}
-        \zeta_{id}(\mathbb{P}_k^1, t) & = \sum_{n=0}^\infty [\Sym^n({\mathbb{P}_k^1})]t^n 
-                                       = \sum_{n=0}^\infty \big(\sum_{k=0}^n \mathbb{L}^k\big) t^n \\
-                                       & = \sum_{n=0}^\infty \sum_{k=0}^n (\mathbb{L}t)^k t^{n-k} \\
-                                      & = \Big( \sum_{n=0}^\infty t^n \Big) \Big( \sum_{n=0}^\infty (\mathbb{L}t)^n \Big) 
+        \zeta_{id}(\mathbb{P}_k^1, t) & = \sum_{n=0}^\infty \left[\Sym^n({\mathbb{P}_k^1})\right]t^n 
+                                       = \sum_{n=0}^\infty \left(\sum_{k=0}^n \mathbb{L}^k\right) t^n \\
+                                       & = \sum_{n=0}^\infty \sum_{k=0}^n \left(\mathbb{L}t\right)^k t^{n-k} \\
+                                      & = \left( \sum_{n=0}^\infty t^n \right) \left( \sum_{n=0}^\infty (\mathbb{L}t)^n \right) 
                                         = \frac{1}{(1-t)(1-\mathbb{L}t)} .%TODO: add a fullstop that does not look completely shitty
     \end{align*}
     Hence $\zeta_{id}(\mathbb{P}_k^1, t)$ is in fact a rational function.
@@ -372,7 +397,7 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
     $\sum_{g \in G} n_g g$ with the $m_g$ being integers, only finitely many non zero.
     Defining multiplication as
     \[
-        (\sum_{g \in G} n_g g)(\sum_{g \in G} m_g g) = (\sum_{g \in G} (\sum_{hl = g} n_h m_l) g)
+        \Big(\sum_{g \in G} n_g g\Big)\Big(\sum_{g \in G} m_g g \Big) = \sum_{g \in G} \Big(\sum_{hl = g} n_h m_l\Big) g
     \]
     this forms a ring: the \emph{monoid ring} over $G$.
 \end{definition}
@@ -385,7 +410,7 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
         \psi \colon \mathcal{M} \to G
     \]
     be a homomorphism of monoids such that
-    \begin{enumerate}
+    \begin{enumerate}[label=\rm{\roman*)}]
         \item $\psi([X]) = \psi([Y])$ if $X$ and $Y$ are birational;
         \item $\psi([\mathbb{P}^n]) = 1$ for all $n \ge 0$.
     \end{enumerate}
@@ -398,25 +423,26 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
 %XXX: maybe rewrite the proof in a more "hands on" fashion to make clear why we check what we check and how \phi is defined
 %XXX: why is \phi multiplicative?
 \begin{proof}
-    By \ref{bittner} we know that the Grothendieck ring (as an abelian group) is generated by $\mathcal{M}$, so after extending $\psi$ to
+    By Theorem \ref{bittner} we know that the Grothendieck ring (as an abelian group) is generated by $\mathcal{M}$, so after extending $\psi$ to
     the free abelian group over $\mathcal{M}$ 
-    we have to check that $\psi$ preserves the relations of the blowup presentation of $\gring[\mathbb{C}]$ and hence factors over it
-    , i.e.\ given a blow-up $f \colon X \to Y$ with smooth center $Z \in X$ then $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$  
-    Note that $[X]$ and $[Y]$ are birational since $f$ is a blowup.
+    we have to check that $\psi$ preserves the relations of the blowup presentation of $\gring[\mathbb{C}]$ and hence factors over it,
+    i.e.\ given a blow-up $f \colon X \to Y$ with smooth center $Z \subset X$ then $\psi([X]) - \psi([f^{-1}(Z)]) = \psi([Y]) - \psi([Z])$. 
+    Note that $[X]$ and $[Y]$ are birational, since $f$ is a blowup, thus $\psi([X]) = \psi([Y])$ by property i).
     
-    Now since $X$ and $Z$ are nonsingular the exceptional divisor $f^{-1}(Z)$ is isomorphic to 
+    Now, since $X$ and $Z$ are nonsingular the exceptional divisor $f^{-1}(Z)$ is isomorphic to 
     the projective space bundle  $\mathbb{P}(\mathcal{I}/\mathcal{I}^2)$ 
     where $\mathcal{I}$ is the ideal sheaf associated to $Z$ (see for example \cite[II.8, Thm 8.24]{Ha}),
     which is a $\mathbb{P}^n$-bundle, i.e.\ locally trivializes to $\mathbb{P}_k^n \times U$ for some open set $U \subset Z$
     and hence is birational to $\mathbb{P}_k^n \times Z$. 
     We can thus write $\psi([f^{-1}(Z)])$ as  
     \[
-        \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}^n]) = \psi([Z][\mathbb{P}^n]) = \psi([Z])\psi([\mathbb{P}^n) = \psi([Z])
+        \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}^n]) = \psi([Z][\mathbb{P}^n]) = \psi([Z])\psi([\mathbb{P}^n]) = \psi([Z])
     \]
-    Hence we can linearly extend $\psi$ to define a morphism $\phi \colon \gring[\mathbb{C}] \to \mathbb{Z} [G]$
+    where the last equation holds because of property ii).
+    Hence, we can extend $\psi$ to define a morphism $\phi \colon \gring[\mathbb{C}] \to \mathbb{Z} [G]$
 \end{proof}
 
-Before constructing a suitable monoid homomorphism that will extend to our desired measure, we recall the definition of the Hodge numbers
+Before constructing a suitable monoid homomorphism that will yield our desired measure, we recall the definition of the Hodge numbers
 of a variety as well as two basic results (all these are excercises in \cite[Ch. II]{Ha}).
 
 \begin{definition}
@@ -428,7 +454,7 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
 
 \begin{lemma}[{\cite[II Ex. 8.8]{Ha}}]
     \label{bir}
-    The Hodge numbers $h^{i,0}$ are a birational invariant of a variety: let $X, Y$ be birationally equivalent, smooth, projective varieties
+    The Hodge numbers $h^{i,0}$ are birational invariants of a variety: let $X, Y$ be birationally equivalent, smooth, projective varieties
     then $h^{i,0}(X) = h^{i,0}(Y)$.
 \end{lemma}
 
@@ -443,7 +469,7 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
         \Psi_h(X) \coloneqq1 + h^{1,0}(X)t + \cdots + h^{d,0}(X)t^d \in C.
     \]
     (Note that the Hodge numbers might be zero, but $\Psi_h(X)$ still has a positive leading coefficient, 
-    just its degree might be smaller than the dimension of $Z$)
+    just its degree might be smaller than the dimension of $X$)
     By Chow's lemma we can also define $\Psi_h$ for a smooth complete variety $Z$ by choosing a smooth projective variety $X$ which is birational
     to $Z$ and setting $\Psi_h(Z) \coloneqq \Psi_h(X)$. This is well defined by Lemma \ref{bir}.
 \end{definition}
@@ -451,7 +477,7 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
 We now check that $\Psi_h$ satisfies all conditions of Theorem \ref{th1}. Independence of birational equivalence class was the content of Lemma
 \ref{bir}. 
 
-To check multiplicativity, we use the following Lemma.
+To check multiplicativity, we use the following lemma.
 
 \begin{lemma}
     Let $X,Y$ be smooth, irreducible, projective $k$-varieties. Then the following equality holds:
@@ -463,29 +489,28 @@ To check multiplicativity, we use the following Lemma.
 
 With this we directly calculate 
 \begin{align*}
-    \Psi_h(X)\Psi_h(Y) &= \left( \sum_n h^{i,0}(X)t^i \right) \left( \sum_n h^{i,0}(Y)t^i \right)  
-    = \sum_n \left( \sum_{i+j=n} h^{i,0}(X) h^{j,0}(Y) \right )t^n \\ &= \sum_n h^{n,0}(X \times_k Y) = \Psi_h(X \times_k Y)
+    \Psi_h(X)\Psi_h(Y) &= \left( \sum_n h^{n,0}(X)t^n \right) \left( \sum_n h^{n,0}(Y)t^n \right)  
+    = \sum_n \left( \sum_{i+j=n} h^{i,0}(X) h^{j,0}(Y) \right )t^n \\ &= \sum_n h^{n,0}(X \times_k Y)t^n = \Psi_h(X \times_k Y)
 \end{align*}
 
 %TODO: Check \Psi_h(P_k^n) = 1 (use Euler sequence)
 
 \section{Irrationality}
 \label{final}
-The constructed motivic measure does not yet yield values in a field, so we would like to pass to the quotient field of $\mathbb{Z}[\mathcal{M}]$.
+The constructed motivic measure does not yet take values in a field, so we would like to pass to the quotient field of $\mathbb{Z}[\mathcal{M}]$.
 That we are able to do so is the content of the next lemma.
 
 \begin{lemma}
-    Let $A$ be a factorial ring, and $S \subset A$ a multaplicative submonoid such that $1$ is the only unit in $S$. Then the monoid ring
+    Let $A$ be a factorial ring, and $S \subset A$ a multiplicative submonoid such that $1$ is the only unit in $S$. Then the monoid ring
     $\mathbb{Z}[S]$ is a polynomial ring (in possibly infinitely many variables), and hence an integral domain.
 \end{lemma}
 \begin{proof}
     Since $A$ is factorial, every $s \in S$ has a unique factorization, and since 1 is the only unit in $S$, 
     $s$ can be uniquely written as product of prime elements, hence if we take $B$ to be the polynomial ring over the formal
     variables $\{x_s | s \in S, s\ \text{prime}\}$ we get an isomorphism of rings
-    \begin{align*}
-        B &\to \mathbb{Z}[S] \\
-        x_s &\mapsto s
-    \end{align*}
+    \[
+        B \to \mathbb{Z}[S], \ x_s \mapsto s
+    \]
 \end{proof}
 
 \begin{definition}
@@ -497,17 +522,17 @@ That we are able to do so is the content of the next lemma.
 
 \begin{lemma}
     \label{same}
-    Let $Y_1,\cdots,Y_s,Z$ be irreducible varieties of dimension d over a field of characteristic zero 
+    Let $Y_1,\dots,Y_s,Z$ be irreducible varieties of dimension d over a field of characteristic zero 
     such that $\mu_h([Z]) = \sum_i n_i \mu_h([Y_i])$ for some $n_i \in \mathbb{Z}$ and $P_g(Z) \neq 0$ then $P_g(Z) = P_g(Y_i)$ for some $i$
 \end{lemma}
 \begin{proof}
     By Corollary \ref{decomp}, we find smooth, irreducible projective varieties $\overline{Z},\overline{Y_1},\cdots, \overline{Y_s}$ in the same
-    birationial class as the original varieties allowing us to rewrite the original equality as 
+    birational class as the original varieties allowing us to rewrite the original equality as 
     \[
         \mu_h([\overline{Z}]) = \sum n_i\mu_h([\overline{Y}_i]) + \sum l_i \mu_h([X_i])
     \]
-    the $X_i$ being smooth irreducible varieties of dimension $<d$.
-    But now, since $\mu_h$ was obtained as an extension of $\Psi_h$ which was defined on smooth, irreducible, projective varieties, this is
+    where the $X_i$ are smooth irreducible varieties of dimension $<d$.
+    Now, since $\mu_h$ was obtained as an extension of $\Psi_h$ which was defined on smooth, irreducible, projective varieties, this is
     actually an equation in $\mathbb{Z}[C]$, namely
     \[
         \Psi_h(\overline{Z}) = \sum n_i \Psi_h(\overline{Y}_i) + \sum l_i\Psi_h(X_i)
@@ -521,7 +546,7 @@ That we are able to do so is the content of the next lemma.
 \end{proof}
 
 Now let $X$ be a smooth projective surface with $P_g(X) \geq 2$. We will show that $\zeta_{\mu_h}(X,t) \in \mathcal{H}[[t]]$ is not rational,
-thus proving Theorem \ref{irrational}. We need one technical lemma about the genus of symmetric powers of X, which we cannot proof here.
+thus proving Theorem \ref{irrational}. We need one technical lemma about the genus of symmetric powers of X, which we cannot prove here.
 
 \begin{lemma}[{\cite[Lem. 3.8]{MR1996804}}]
     \label{genus}
@@ -534,7 +559,7 @@ thus proving Theorem \ref{irrational}. We need one technical lemma about the gen
 We will use the following rationality criterion for power series.
 
 \begin{lemma}
-    Let $k$ be a field and suppose the power series $\sum a_it^i \in k[[t]]$  is a rational function (i.e. an element in $k(t)$) then
+    Let $k$ be a field and suppose the power series $\sum a_it^i \in k[[t]]$  is a rational function (i.e.\ an element in $k(t)$) then
     there exist $n, n_0 > 0$ such that for each $m > n_0$ the determinant
     \[
         \begin{vmatrix}
@@ -547,13 +572,13 @@ We will use the following rationality criterion for power series.
     vanishes.
 \end{lemma}
 \begin{proof}
-    Denote the above Matrix by $A$. Since $\sum a_it^i$ is rational, we may write it as
+    Denote the above matrix by $A$. Since $\sum a_it^i$ is rational, we may write it as
     \[
         \sum a_it^i = \frac{p_0 + \dots + p_et^e}{q_0 + \dots + q_d t^n}
     \]
     with not all $q_i$ being zero.
     Hence 
-    $p_0 + \dots + p_et^e = \left(\sum a_it^i\right)\left(q_0 + \dots + q_d t^d\right) = \sum_{i=0}^{\infty} \left(\sum_{k+l=i} a_kq_0\right)t^i$.
+    $p_0 + \dots + p_et^e = \left(\sum a_it^i\right)\left(q_0 + \dots + q_d t^d\right) = \sum_{i=0}^{\infty} \left(\sum_{k+l=i} a_kq_l\right)t^i$.
     This means that for $m > e$ we get $0 = \sum_{k+l=m} a_kq_l$. now note that $q_l = 0$ for $l > n$ hence we may rewrite this as
     \[
         0 = \sum_{l = 0}^{n} q_la_{m-l} = \sum_{l=0}^n q_{n-l}a_{m-n+l}.
@@ -581,10 +606,10 @@ We will use the following rationality criterion for power series.
 \begin{proof}[Proof of Theorem \ref{irrational}]
     Assume that $\zeta_{\mu_h}(X,t)$ is rational, hence by the above criterion there is a $n$ such that for $m$ big enough
     \begin{gather*}
-            \sum_{\sigma \in S_{n+1}} \sgn(\sigma) \mu_h ( \prod_{i=1}^{n+1} \Sym^{m + i + \sigma(i) - 2}(X))  = 0 \\ 
+        \sum_{\sigma \in S_{n+1}} \sgn(\sigma) \mu_h \Big(\left[ \prod_{i=1}^{n+1} \Sym^{m + i + \sigma(i) - 2}(X)\right]\Big)  = 0 \\ 
             \Leftrightarrow
-            \mu_h \Big ( \prod_{i=0}^n \Sym^{m + 2i}(X) \Big )  = - \sum_{\substack{\sigma \in S_{n+1} \\ \sigma \neq id}} 
-            \sgn(\sigma) \mu_h \Big ( \prod_{i=0}^n \Sym^{m + i + \sigma(i+1) - 1}(X) \Big )
+            \mu_h \Big ( \left[ \prod_{i=0}^n \Sym^{m + 2i}(X) \right] \Big )  = - \sum_{\substack{\sigma \in S_{n+1} \\ \sigma \neq id}} 
+            \sgn(\sigma) \mu_h \Big ( \left[\prod_{i=0}^n \Sym^{m + i + \sigma(i+1) - 1}(X) \right]\Big )
     \end{gather*}
     Now we can apply Lemma \ref{same} to conclude that there is a permutation $\sigma$, not the identity permutation, such that
     \[
@@ -592,7 +617,7 @@ We will use the following rationality criterion for power series.
     \]
     By Lemma \ref{genus} (and using the fact that the genus is multiplicative), we get
     \[
-        \prod_{i=0}^n \binom{P_g(X) + m + 2i - 1}{P_g(X) - 1} - \prod_{i=0}^n \binom{P_g(X) + m + i + \sigma(i+1) - 2}{P_g(X) - 1} = 0
+        \prod_{i=0}^n \binom{P_g(X) + m + 2i - 1}{P_g(X) - 1} - \prod_{i=0}^n \binom{P_g(X) + m + i + \sigma(i+1) - 2}{P_g(X) - 1} = 0.
     \]
     By assumption $P_g(X) \geq 2$ hence the left hand side, considered as an polynomial in $m$, is not the zero polynomial. So by taking
     $m$ large enough we obtain a contradiction.
