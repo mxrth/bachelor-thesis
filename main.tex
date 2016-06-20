@@ -181,6 +181,12 @@ Wir werden ein Theorem von Bittner (\cite{Bittner}) verwenden um den ursprüngli
     A \emph{motivic measure} with values in a ring $A$ is a ring homomorphism $\mu \colon \gring \to A$. The identity function
     $\mathrm{id} \colon \gring \to \gring$ is called the \emph{universal motivic measure}.
 \end{definition}
+
+To see that this is really a ring we actually have to check that multiplication is compatible with the relations, but we have
+\[
+    [Z] ([X \setminus Y]) = [Z \times (X \setminus Y)] = [(Z \times X) \setminus (Z \times Y)] = [Z \times X] - [Z \times Y] = [Z]([X] - [Y])
+\]
+
 %TODO: explain why this is a ring
 The reason that we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
 $k = k_0(t)$ with $k_0$ of characteristic $p > 0$ and $X = \Spec(k[x]/(x^p - t))$, $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
@@ -235,10 +241,6 @@ former are $k[x]_{x}$ , but in the Grothendieck ring we get
 \end{align*}
 
 %XXX: move?
-\begin{remark}
-    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
-    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
-\end{remark}
 
 We now investigate the structure of the Grothendieck ring. First we note that it suffices to take irreducible varieties to generate $\gring[k]$
 To see this, take a variety $X$ with irreducible componets $X_1, \dots, X_n$ and set ${U_i \coloneqq X_i \setminus \bigcup_{i \neq j} X_j}$ and
@@ -267,7 +269,7 @@ This observation culminates in a structure theorem about the Grothendieck ring p
     where $X$,$Y$ are smooth complete varieties and $f \colon X \to Y$ is a morphism which is a blowup with a smooth center $Z \subset Y$.     
 \end{theorem}
 \begin{proof}
-    We will only proof the first part of the statement. As remarked before, we can restrict our 
+    We will only proof the first part of the statement, for a proof of the second part see \cite{Bittner}. As remarked before, we can restrict our 
     attention to irreducible varietes.  We once again argue by induction on the dimension.
     Let $X$ be an irreducible variety of dimension $n$. By choosing some nonempty affine subvariety and passing to its projective closure we
     find $X'$ projective, irreducible and birational to $X$. Resolving singularities we find $\widetilde{X}$ smooth, projective, irreducible
@@ -303,40 +305,109 @@ We now want to make the concept of the symetric product precise, i.e. how it can
 action of the symmetric group.
 
 \begin{definition}
-    Let $X$ be a $S$-Scheme, $G$ a group acting on $X$ via $S$-automorphisms (i.e there is a group homomorphism $\sigma \colon G \to Aut_S(X)$,
-    we also write $\sigma_g$ for the image of $g$ under $\sigma$.) 
-    Then a variety $Y$ together with a morphism $\pi \colon X \to Y$
+    Let $X$ be a $S$-Scheme, $G$ a group acting on $X$ (from the left) 
+    via $S$-automorphisms. Then a variety $Y$ together with a morphism $\pi \colon X \to Y$
     over $S$ is called the quotient (also denoted by $X/G$) of $Y$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
     $\pi \circ g = \pi$ and is universal in this respect, i.e. for every other $G$-invariant morphism $f \colon X \to Z$ there exists a unique
     $G$-invariant morphism $g \colon Z \to Y$that makes the following diagram commute
     \begin{equation*}
         \begin{tikzcd}
-            X \arrow{r}{f} \arrow{d}{\pi} & X/G \\
-            Z \arrow[dashrightarrow]{ur}{g}
+            X \arrow{r}{\pi} \arrow{d}{f} & X/G \\
+            Z \arrow[dashleftarrow]{ur}{g}
         \end{tikzcd}.
     \end{equation*}
 \end{definition}
 
-We first construct the quotient in the affine case.
+\begin{remark}
+    Since it is defined via an universal property, the quotient is unique up to unique isomorphism if it exists. 
+    In contrast to other settings the scheme theoretic quotient does not always exist and can be quite subtle to construct.
+    In the following we construct the quotient in the case that $G$ is finite and the scheme $X$ is a quasiprojective variety.
+\end{remark}
+
+We first construct the quotient in the affine case. If we were actually taking the quotient in the category of affine schemes things would be
+quite simple: we could as well work in the category of rings and construct something that might be called a co-quotient, i.e.\ an object that
+satisfies the conditions of the definition, just with all arrows reversed (now $G$ is a right-action). This is simply the $G$ invariant ring
+$A^G \coloneqq \{a \in A | ga = a \ \forall g \in G\} \subset A$. Hence in the category of affine schemes the quotient would be given by 
+$\Spec(A) \to \Spec(A^G)$. But since we would like to take quotients in the full category of schemes we have to do some more work.
+First we slightly rephrase the definition for the case of schemes.
 \begin{lemma}
-    Let $X = \Spec{A}$ be an affine variety with a group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
+    \label{quotProps}
+    Let $\pi \colon X \to Y$ be a surjective morphism of schemes togheter with a group $G$ acting on $X$ via automorphism 
+    such that the following conditions hold:
+    \begin{enumerate}[label=\rm{\roman*)}]
+        \item The fibres of $\pi$ are in one to one correspondence to the orbits of the $G$-action.
+        \item $Y$ has the quotient topology.
+        \item There exists a unique isomorphism $\mathcal{O}_X = \pi_*\mathcal{O}_Y^G$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    The first two properties ensure that $\pi$ is a quotient of topological spaces, i.e. $\pi$ is a universally $G$-invariant continous map.
+    By the discussion above, the third condition ensures that now actually all these morphisms are also morphism of locally ringed spaces.
+\end{proof}
+
+\begin{remark}
+    \label{quotLocal}
+    This shows that the quotient is in fact a local notion in the sense that if $U$ is an open subset of the quotient $X/G$ 
+    then $\pi|_{\pi^{-1}(U)} \colon \pi^{-1}(U) \to U$ is the quotient of $\pi^{-1}(U)$ by the action of $G$.
+\end{remark}
+
+\begin{lemma}
+    Let $X = \Spec{A}$ be an affine variety with a finite group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
     is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
 \end{lemma}
 \begin{proof}
-    TODO
+    We first show that $\Spec(A^G)$ is again a variety. As a subring of a reduced $k$-algebra $A^G$ is again reduced, so what is left to check
+    is that it is of finite type over $k$. Let $T_1,\dots,T_n$ be generators of $A$ as $k$-algebra, by passing to the union of the orbits of
+    the $T_i$ we might acutally assume that $G$ acts on the set of generators via permutations and hence can be seen as a subgroup of the 
+    symmetric group $S_n$. Hence we get the following chain of ring inclusions: $k \subset A^{S_n} \subset A^G \subset A$. Now $A^{S_n}$ is
+    generated by the elementary symmetric polynomials in the $T_i$ and hence is of finite type over $k$.
+    It is now enough to show that $A$ is integral over $A^{S_n}$ because then $A$ is of finite type and integral over $A^{S_n}$ and hence
+    finite, and since $A^{S_n}$ is noetheriean $A^G$, as a submodule of $A$, 
+    is again a finite module over $A^{S_n}$ hence of finite type over $k$.
+    So let be $a \in A$, then we find a $f_a \in k[X_1,\dots,X_n]$ such that $f_a(T_1,\dots,T_n) = a$, and we find that $a$ is a zero of
+    the polynomial
+    \[
+        \prod_{g \in S_n} (X - g(a)) = \prod_{g \in G} (X - f_a(g(T_1),\dots,g(T_n))) \in A^{S_n}[X]
+    \]
+    hence it is integral over $A^S_n$ (and also over $A^G$).
+    This proves that $\Spec(A^G)$ is again a variety. To show that it is also the quotient of $X$ by the action of $X$ we check the properties
+    i) to iii) of \ref{quotProps}. Let us prove the first property.
+    Since we have $g\mathfrak{p} \cap A^G$ = $\mathfrak{p} \cap A^G$ each orbit is contained in some fibre. For the converse assume we have
+    prime ideals $\mathfrak{p},\mathfrak{q} \subset A$ such that $\mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$.
+    For $a \in \mathfrak{p}$ we have $\prod_{g \in G} ga \in \mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$, and since $\mathfrak{q} \cap A^G$
+    is prime we find some $g \in G$ such that $ga \in \mathfrak{q} \cap A^G$ or equivalently 
+    $a \in g^{-1}\mathfrak{q} \cap A^G \subset \mathfrak{q}$, hence 
+    we find $\mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}$ and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
+    contained in some $g\mathfrak{q}$. Because the situation is symmetric in $\mathfrak{p}$ and $\mathfrak{q}$ we find $h \in G$ such that
+    $\mathfrak{q} \subset h\mathfrak{p}$ hence $\mathfrak{p} \subset g\mathfrak{q} \subset hg\mathfrak{p}$. Now we use the fact that
+    for a integral extension two prime ideals with the same contraction with one subset of another must actually be equal. Applied to this
+    situation and again using that $\mathfrak{p} \cap A^G = hg\mathfrak{p} \cap A^G$ we obtain $hg\mathfrak{p} = \mathfrak{p}$ and by the same
+    argument finally $\mathfrak{p} = g\mathfrak{q}$. Hence we have shown that fibres and orbits coincide. Furthermore this shows that $\pi$ is
+    surjective and finite, hence $\Spec(A^G)$ has the quotient topology.
+    For the last property we note that the action of $G$ extends to an action on $A_f$ for some $f \in A^G$ and we have 
+    $A^G_f = (A_f)^G$ for some $f \in A^G$ since if $\frac{a}{f^n} = \frac{ga}{f^n}$ if and only if $a = ga$. This means that the natural
+    map $A^G_f = \mathcal{O}_{Spec(A^G)}(D(f)) \to \pi_*\mathcal{O}_{Spec(A)}(D(f))^G = (A_f)^G$ is an isomorphism, and since the $D(f)$ form
+    a basis of the topology we hav proven property iii).
 \end{proof}
 
 We now turn to a relevant special case: the quotient of an quasiprojective variety $X$ by the action of a finite group $G$, using the following
-general result from \cite{SGA1}
+general result.
 
 \begin{lemma}[{\cite[Prop. 1.8]{SGA1}}]    
     Let $X$ be a scheme with a finite group $G$ acting on it via automorphisms. If there exists an open cover by $G$-invariant affine sets
     then the quotient $X/G$ exists.
     We call such an action \emph{admissible}
 \end{lemma}
+\begin{proof}
+    Say $X$ is covered by the $G$-invariants affine sets $U_1,\dots,U_i$ for which we may construct the quotient $\pi_i \colon U_i \to U_i/G$ 
+    as by the previous lemma. Now we would like to glue these. This is possible since by Remark \ref{quotLocal} 
+$\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U_j \to \pi_j(U_i \cap U_j)$ are both quotients of $U_i \cap U_j$
+    by $G$ and therefore naturally isomorphic. Since we may check the conditions of Lemma \ref{quotProps} locally gluing gives a quotient of 
+    $X$ by $G$.
+\end{proof}
 
 \begin{corollary}
-    If $X$ is quasiprojective, then the quotient by the action of a finite group always exists.
+    If $X$ is a quasiprojective variety, then the quotient by the action of a finite group always exists and is itself a quasiprojective variety.
 \end{corollary}
 \begin{proof}
     Let $X \subset \mathbb{P}_k^n$ be locally closed with a finite group $G = \{g_1,\cdots,g_m\}$ acting on it. 
@@ -363,7 +434,7 @@ general result from \cite{SGA1}
 \end{definition}
 
 \begin{example}
-    
+    $Sym^n(P^1) = P^n$. (TODO: write up explanation)
 \end{example}
 
 \begin{definition}
@@ -464,6 +535,10 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
     Every proper variety is birational to a projective variety.
 \end{lemma}
 
+\begin{remark}
+    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
+    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
+\end{remark}
 \begin{definition}
     Denote by $C \subset \mathbb{Z}[t]$ the multiplicative monoid of polynomials with positive leading coefficient.
     For a smooth projective complex variety $Z$ of dimension $d$ define
