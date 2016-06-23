@@ -357,6 +357,7 @@ First we slightly rephrase the definition for the case of schemes.
 \end{remark}
 
 \begin{lemma}
+    \label{quotAffine}
     Let $X = \Spec{A}$ be an affine variety with a finite group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
     is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
 \end{lemma}
@@ -439,6 +440,15 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
 \end{definition}
 
 \begin{example}
+    By Lemma \ref{quotAffine} we have $Sym^n(\mathbb{A}^1) = \mathbb{A}^n/S_n = \Spec(k[x_1,\dots,x_n]^{S_n}).$ Where $S_n$ acts on the
+    polynomial ring by permuting the $x_i$. As remarked above, by the fundamental theorem of elementary symmetric functions the subring
+    of symmetric polynomials is generated as an algebra by the symmetric polynomials and these are algebraically independeent, hence
+    $Sym^n(\mathbb{A}^1) \cong \mathbb{A}^n)$.
+\end{example}
+\begin{example}
+
+\end{example}
+\begin{example}
     $Sym^n(\mathbb{P}^1) = \mathbb{P}^n$. (TODO: write up explanation)
 \end{example}
 
@@ -462,6 +472,52 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
     \end{align*}
     Hence $\zeta_{id}(\mathbb{P}_k^1, t)$ is in fact a rational function.
 \end{example}
+
+\textbf{The following is HIGHLY EXPERIMENTAL}
+
+After discussing the genus zero case, we now sketch the picture for arbitrary smooth projective curves. 
+For simplicity we will assume that our ground field $k$ is algebraically closed, but
+this works in general whenever the curve in question has a rational point. 
+So let $C$ be a smooth projective connected curve of genus $g > 0$ with a distinguished (rational) point $P \in C$.
+
+\begin{theorem}%TODO: explain what Pic^0(X) is as a variety!!!
+    Let $n$ be greater than $2g-2$, then the map 
+    \begin{align*}
+        Sym^n(C) &\to Pic^0(X) \\
+        [x_1,\dots,x_n] &\mapsto \mathcal{L}(x_1 + \dots + x_n - nP)
+    \end{align*}
+    Is a projective bundle of rank $n - g$ %XXX: what is the convention here? n-g or n-g+1?
+\end{theorem}
+\begin{proof}
+    We only sketch the idea, for a complete proof and a rigourous introduction of the employed concepts see (TODO: Milne, Mumford?)
+    The fibre over some $\mathcal{L}(D)$, for $D = \sum x_i - nP$ is the complete linear system $|D| = \mathbb{P}(H^0(C, \mathcal{L}(D)))$.
+    As usual, denote by $l(D)$ the dimension of the global sections of $\mathcal{L}(D)$, then Riemann-Roch tells us 
+    that $l(D) - l(K-D) = deg(D) - g + 1 = n - g + 1$, but since $deg(K) = 2g-2$, for $n > 2g-2$ we find $l(K-D) = 0$, and hence
+    $l(d) = n-g+1$, so the fibre is indeed isomorphic to $\mathbb{P}^(n-g)$. It of course remains to show that the morphism does in
+    fact locally look like the projection of $Pic^0(X) \times \mathbb{P}^{n-g)}$ onto the first factor.
+\end{proof}
+
+Using this in conjunction with Lemma TODO we can obtain a nice closed form for the zeta function of an eliptic curve.
+Recall that an elliptic curve is a smooth projective connected curve $E$ of genus $1$ with a distinguished rational point $P \in E$, the
+the map $E \to Pic^0(E), x \mapsto L(x-P)$ is then an isomorphism. By the above theorem the map $Sym^n(E) \to Pic^0(X)$ is a projective bundle for
+$n > 2g - 2 = 0$, i.e.\ it locally looks like the projection of $Pic^0(E) \times \mathbb{P}^n-1$ onto the first factor.
+Thus by Lemma TODO in the Grothendieck ring we have for $n>0$ 
+\begin{equation}
+    [Sym^n(E)] = [Pic^0(E)][\mathbb{P}^{n-1}] = [E][\mathbb{P}^{n-1}]
+\end{equation}
+Hence we calculate
+\begin{align*}
+    \zeta_{\mathrm{id}}(E,t) &= \sum_{n=0}^{\infty} [Sym^n(E)] = 1 + \sum_{n=1}^\infty [E][\mathbb{P}^{n-1}]t^n \\
+                             &= 1 + [E]t \sum_{n=1}[\mathbb{P}^{n-1}]t^{n-1} = 1 + [E]t \zeta_{\mathrm{id}}(\mathbb{P}^1, t)\\
+                             &= 1 + \frac{[E]t}{(1-t)(1-\mathbb{L}t)} = \frac{1 + ([E]-[\mathbb{P}^1])t + \mathbb{L}t^2}{(1-t)(1-\mathbb{L}t)}.
+\end{align*}
+
+In the general case of positive genus we still get
+\begin{align*}
+    \zeta_{\mathrm{id}}(C,t) &= \sum_{n=0}^{2g-2} [Sym^n(C)] + \sum_{n=2g-1}^\infty [Pic^0(C)][\mathbb{P}^{n-1}]t^n\\
+                             &= \sum_{n=0}^{2g-2} [Sym^n(C)] + [Pic^0(C)]t\zeta_{\mathrm{id}}(\mathbb{P}^1, t).
+\end{align*}
+And thus we have shown that $\zeta_{\mathrm{id}}(C,t)$ is a rational function.
 
 \section{Constructing Motivic Measures}
 \label{const}
