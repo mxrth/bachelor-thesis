@@ -243,6 +243,34 @@ former are $k[x]_{x}$ , but in the Grothendieck ring we get
                                                                       &= \mathbb{L}^{n+1}
 \end{align*}
 
+Another interesting source of examples are (Zariski) locally trivial morphisms.
+\begin{definition}
+    A morphism of schemes $f \colon X \to Y$ is called (Zariski) locally trivial with fibre $F$ if there exists an open cover of $Y$,
+    $Y = \bigcup_{i} U_i$ such that $f^{-1}(U_i) \cong U_i \times F$ and $f|_{f^{-1}(U_i)} \colon f^{-1}(U_i) \cong U_i \times F \to U_i$ is
+    the projection on the first factor.
+\end{definition}
+
+\begin{lemma}
+    Let $f \colon X \to Y$ be a locally trivial morphism of varieties with fibre $F$, then in the Grothendieck ring of varieties
+    one has $[X] = [Y][F]$.
+\end{lemma}
+\begin{proof}
+    Suppose $Y = \bigcup_{i=1}^n U_i$ such that $f$ is trivial over $U_i$. Set $V_i = f^{-1}(U_i)$, by assumption we have $[V_i] = [U_i][F]$. 
+    Let us argue by induction over n, so suppose we know that $[\bigcup_{i=1}^{n-1} V_i] = [\bigcup_{i=1}^{n-1} U_i][F]$, then
+    \begin{align*}
+        [\bigcup_{i=1}^n V_i]       &= [\bigcup_{i=1}^{n-1} V_i] + [V_n \setminus (V_n \cap \bigcup_{i=1}^{n-1})] \\
+                                    &= [\bigcup_{i=1}^{n-1} U_i][F] + [V_n] - [V_n \cap \bigcup_{i=1}^{n-1}] 
+                                     = [\bigcup_{i=1}^{n-1} U_i][F] + [U_n][F] - [U_n \cap \bigcup_{i=1}^{n-1}][F]\\
+                                    &= [\bigcup_{i=1}^n U_i][F].
+    \end{align*}
+\end{proof}
+
+\begin{example}
+    \label{projBundle}
+    Suppose $f \colon E \to X$ is a projective bundle of rank $n$, then, by definition, $f$ locally trivializes to the projection
+    $f^{-1}(U_i) \times \mathbb{P}^{n-1} \to U_i$ to the first factor, so by the above theorem we have
+    $[E] = [X][\mathbb{P}^{n-1}]$. We will use this when we consider the motivic Zeta function for curves.
+\end{example}
 %XXX: move?
 
 We now investigate the structure of the Grothendieck ring. First we note that it suffices to take irreducible varieties to generate $\gring[k]$.
@@ -623,7 +651,7 @@ Before constructing a suitable monoid homomorphism that will yield our desired m
 of a variety as well as two basic results (all these are excercises in \cite[Ch. II]{Ha}).
 
 \begin{definition}
-    Let $X$ be a projective variety. The \emph{Hodge number} $h^{i,j}$ is given as the dimension of $H^j(X,\Omega^i_X)$, 
+    Let $X$ be a projective variety. The \emph{Hodge number} $h^{p,q}$ is given as the dimension of $H^q(X,\Omega^p_X)$, 
     which is a finite dimensional $k$-vector space by a theorem of Serre (\cite[§3 Prop. 7]{FAC}).
     %XXX: why not directly define for 
     If $d$ is the dimension of a nonsingular variety $X$ we will also write $P_g(X)$ for $h^{d,0}(X)$, called the \emph{geometric genus} of $X$.
@@ -632,22 +660,21 @@ of a variety as well as two basic results (all these are excercises in \cite[Ch.
 
 \begin{lemma}[{\cite[II Ex. 8.8]{Ha}}]
     \label{bir}
-    The Hodge numbers $h^{i,0}$ are birational invariants of a variety: let $X, Y$ be birationally equivalent, smooth, projective varieties
-    then $h^{i,0}(X) = h^{i,0}(Y)$.
+    The Hodge numbers $h^{p,0}$ are birational invariants of a variety: let $X, Y$ be birationally equivalent, smooth, projective varieties
+    then $h^{p,0}(X) = h^{p,0}(Y)$.
 \end{lemma}
 
 Let us compute the hodge numbers of the projective space over a field as an example.
-Recall that we have the euler exact sequence 
-\[0 \to \Omega_{\mathbb{P}_k^n} \to \mathcal{O}_{\mathbb{P}_k^n}^{\oplus n+1}(-1) \to \mathcal{O}_{\mathbb{P}_k^n} \to 0 \]
 
 We also need the following general lemma.
 
 \begin{lemma}
+    \label{ses}
     Let 
     \[
         0 \to \mathcal{F}' \to \mathcal{F} \to \mathcal{F}'' \to 0
     \]
-    be a short exact sequence of locally free sheaves and assume furthermore that $\mathcal{F}''$ is of rank one.
+    be a short exact sequence of locally free sheaves of finite rank and assume furthermore that $\mathcal{F}''$ is of rank one.
     Then for any $p \ge 1$ the sequence
     \[
         0 \to \Lambda^p \mathcal{F}' \to \Lambda^p \mathcal{F} \to \Lambda^{p-1} \mathcal{F}' \otimes \mathcal{F}'' \to 0
@@ -655,9 +682,33 @@ We also need the following general lemma.
     is exact.
 \end{lemma}
 
+\begin{lemma}
+    For the Hodge numbers of the projective space are given as
+    \[
+        h^{p,q}(X) = 
+        \begin{cases}
+            1 \text{, if $p = q \leq n$}\\
+            0 \text{, else}
+        \end{cases}
+    \]
+\end{lemma}
+\begin{proof}
+    We argue by induction on $p$. For $p = 0$ this calculates the homology of the structure sheaf for which we obtain the claimed dimensions.
+    For the induction step recall that we have the euler exact sequence 
+    \[0 \to \Omega_{\mathbb{P}_k^n} \to \mathcal{O}_{\mathbb{P}_k^n}^{\oplus n+1}(-1) \to \mathcal{O}_{\mathbb{P}_k^n} \to 0 .\]
+    Since all these sheaves are locally free of finite rank we may apply Lemma \ref{ses} to this sequence to obtain
+    \[
+        0 \to \Omega_{\mathbb{P}^n}^p \to {\mathcal{O}(-p-1)}^{\binom{n}{p+1}} \to \Omega_{\mathbb{P}^n}^{p-1} \to 0
+    \]
+    This yields a long exact sequence in homology. Now, since $H^i(\mathbb{P}^n, \mathcal{O}(-p)) = 0$ for $0 < i < p+1$ these all vanish.
+    By induction hypothesis only $H^{p-1}(\mathbb{P}^n, \Omega^{p-1})$ does not vanish, so it must be isomorphic to 
+    $H^{p}(\mathbb{P}^n, \Omega^p)$. This proves the lemma.
+\end{proof}
 \begin{lemma}[Chow, {\cite[II Ex. 4.10]{Ha}}]
     Every proper variety is birational to a projective variety.
 \end{lemma}
+
+This does not hold in general 
 
 \begin{remark}
     By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
