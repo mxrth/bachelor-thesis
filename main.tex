@@ -117,6 +117,7 @@ Eigenschaft: Falls $X$ eine glatte, projektive, komplexe Fläche mit geometrisch
 motivische Zetafunktion $\zeta_{\mu_h}(X,t)$ nicht rational.
 \end{theorem}
 
+%TODO: acknowledgments
 
 %We now want to motivate what a possible generalization of the Hasse-Weil zeta function for varieties over a arbitrary field $k$ could be.
 %This part therefore, in some places, sacrifices mathematical precision for the sake of brevity.  
@@ -182,7 +183,7 @@ We will write $\mathcal{V}_k$ for the category of $k$-varieties.
     $\mathrm{id} \colon \gring \to \gring$ is called the \emph{universal motivic measure}.
 \end{definition}
 
-To see that this is really a ring we actually have to check that multiplication is compatible with the relations. We have
+To see that this is really a ring we have to check that multiplication is compatible with the relations. We have
 \begin{align*}
     [Z] ([X \setminus Y])   &= [Z \times (X \setminus Y)] = [(Z \times X) \setminus (Z \times Y)] \\
                             &= [Z \times X] - [Z \times Y] = [Z]([X] - [Y]).
@@ -190,7 +191,7 @@ To see that this is really a ring we actually have to check that multiplication 
 Hence multiplication is well defined.
 
 \begin{remark}
-The reason that we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
+The reason we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
 $k = k_0(t)$ with $k_0$ of characteristic $p > 0$ and $X = \Spec(k[x]/(x^p - t))$, $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
 Then $X$ is a variety since $x^p - t$ is irreducible in $k_0(t)$. The product of $X$ and $Y$, on the other hand, can be described as
     \[
@@ -208,6 +209,7 @@ The cut and paste relation furthermore gives us
 \]
 
 \begin{example}
+    \label{countMeasure}
     For a finite field $k$, consider the function \footnote{not bothering with any set-theoretic issues} 
     \begin{align*}
         \psi \colon \mathcal{V}_k & \to   \mathbb{Z}\\
@@ -387,7 +389,7 @@ First we slightly rephrase the definition for the case of schemes.
     Let $X = \Spec{A}$ be an affine variety with a finite group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
     is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
 \end{lemma}
-\begin{proof}
+\begin{proof}(We follow the proof in \cite{mustata}[Prop A.1])
     We first show that $\Spec(A^G)$ is again a variety. As a subring of a reduced $k$-algebra $A^G$ is again reduced, so what is left to check
     is that it is of finite type over $k$. Let $T_1,\dots,T_n$ be generators of $A$ as $k$-algebra. By passing to the union of the orbits of
     the $T_i$ we might assume that $G$ acts on the set of generators via permutations and hence can be seen as a subgroup of the 
@@ -576,17 +578,22 @@ For simplicity we will assume that our ground field $k$ is algebraically closed,
 this works in general whenever the curve in question has a rational point. 
 So let $C$ be a smooth projective connected curve of genus $g > 0$ with a distinguished (rational) point $P \in C$.
 
+There is a deep result that describes the symmetric product of a curve as a projective bundle over the so called Picard variety. We will
+not introduce it here in full generality. The idea is that the we can give the Picard group of a variety a natural structure of a group scheme,
+such that we have a bijection between the closed points of the Picard variety and the classical
+Picard group. 
+
 \begin{theorem}%TODO: explain what Pic^0(X) is as a variety!!!
-    Let $n$ be greater than $2g-2$, then the map 
+    Let $n$ be greater than $2g-2$, then the map  
     \begin{align*}
         Sym^n(C) &\to Pic^0(X) \\
         [x_1,\dots,x_n] &\mapsto \mathcal{L}(x_1 + \dots + x_n - nP)
     \end{align*}
-    Is a projective $n-g$-space bundle of rank $n - g$ %XXX: what is the convention here? n-g or n-g+1?
+    Is a projective $n-g$-space bundle.%XXX: what is the convention here? n-g or n-g+1?
 \end{theorem}
 \begin{proof}
     We only sketch the idea, for a complete proof and a rigourous introduction of the employed concepts see (TODO: Milne, Mumford?)
-    The fibre over some $\mathcal{L}(D)$, for $D = \sum x_i - nP$ is the complete linear system $|D| = \mathbb{P}(H^0(C, \mathcal{L}(D)))$.
+    The fibre over some $\mathcal{L}(D - nP)$, for $D = \sum x_i$ is the complete linear system $|D| = \mathbb{P}(H^0(C, \mathcal{L}(D)))$.
     As usual, denote by $l(D)$ the dimension of the global sections of $\mathcal{L}(D)$, then Riemann-Roch tells us 
     that $l(D) - l(K-D) = deg(D) - g + 1 = n - g + 1$, but since $deg(K) = 2g-2$, for $n > 2g-2$ we find $l(K-D) = 0$, and hence
     $l(D) = n-g+1$, so the fibre is indeed isomorphic to $\mathbb{P}^{n-g}$. It of course remains to show that the morphism does in
@@ -645,6 +652,20 @@ So after taking the exponential of both sides, we find that
            &= \prod_{x \in X_{\mathrm{cl}}} \sum_{k=0}^\infty t^{\deg(x)k} = \sum_{x \in Z_0(X)} t^{\deg(x)}
 \end{align*}
 Where we find the last equality by multiplying out.
+
+So to show that $Z(X,t) = \zeta_{\Psi}(X,T)$ 
+(where \Psi is the motivic measure counting rational points that was introduced in Example \ref{countMeasure}) 
+it suffices to show the following lemma.
+
+\begin{lemma}
+    Let $X$ be a variety over a finite field $k$. Then the number of $k$-rational points of the $n$-fold symmetric product agrees
+    with the number of effective zero cycles on X.
+\end{lemma}
+\begin{proof}
+    This is clear in the case that $k$ is algebraically closed, since then the degree of a closed point is one, so taking formal sums of
+    a given degree $n$ is the same as giving $n$ (not necessarily distinct) points not caring about the order.
+    We would like to reduce to this case. TODO: do this.
+\end{proof}
 
 \section{Constructing Motivic Measures}
 \label{const}
