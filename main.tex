@@ -83,8 +83,8 @@ and $Sym^n(X)$ is the $n$-fold symmetric product of $X$ (see Definition \ref{sym
 It is a natural question to ask if this zeta function is still a rational function (at least if $\mu$ takes values in a field).
 Kapranov proved this for smooth projective curves (\cite[Thm 1.1.9]{kapranov}) and conjectured that it is true in general.
 %TODO: really start a sentence with BUT?
-But it turns out that in the motivic setting the zeta function is not as well behaved in terms of rationality as in the classical case:
-Larsen and Lunts showed in \cite{MR1996804} that the zeta function fails to be rational for complex surfaces.
+It turns out that in the motivic setting the zeta function is not as well behaved in terms of rationality as in the classical case:
+Larsen and Lunts showed in \cite{MR1996804} that the zeta function fails to be rational for certain complex surfaces.
 
 \begin{theorem}[{\cite[Thm. 1.6]{MR1996804}}]
 \label{irrational}
@@ -93,13 +93,14 @@ property: if $X$ is a smooth complex projective surface such that the geometric 
 then the zeta-function $\zeta_{\mu_h}(X,t)$ is not a rational function.
 \end{theorem}
 
-The goal of this thesis is to give a simplified proof of this result, using results about the grothendieck ring that were not available
+The goal of this thesis is to give a simplified proof of this result, using results about the Grothendieck ring that were not available
 to Larsen and Lunts.
 We will first introduce the Grothendieck ring in Section \ref{sec1} and investigate its structure. 
 This culminates in a structure theorem due to Bittner (\cite[Thm 3.1]{Bittner}) which will allow us to substantially simplify the original 
 proof.
 The second section is devoted to the definition of the motivic zeta function, which entails defining and giving examples for the symmetric 
-product. There we will also see the connection between the classical Hasse--Weil zeta function and the motivic one.
+product. There we will also see the connection between the classical Hasse--Weil zeta function and the motivic one as well as a glimpse of
+Kapranovs proof of the rationality for curves.
 Construction of the motivic measure $\mu_h$ under wich $Z_{\mu_h}(X,t)$ becomes irrational is content of Section \ref{const} while irrationality
 is then finally proven in the last section.
 
@@ -183,7 +184,7 @@ We will write $\mathcal{V}_k$ for the category of $k$-varieties.
     $\mathrm{id} \colon \gring \to \gring$ is called the \emph{universal motivic measure}.
 \end{definition}
 
-To see that this is really a ring we have to check that multiplication is compatible with the relations. We have
+To see that this is really a ring we have to check that multiplication is compatible with the relations. We have for $Y \subset X$ closed
 \begin{align*}
     [Z] ([X \setminus Y])   &= [Z \times (X \setminus Y)] = [(Z \times X) \setminus (Z \times Y)] \\
                             &= [Z \times X] - [Z \times Y] = [Z]([X] - [Y]).
@@ -193,7 +194,7 @@ Hence multiplication is well defined.
 \begin{remark}
 The reason we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
 $k = k_0(t)$ with $k_0$ of characteristic $p > 0$ and $X = \Spec(k[x]/(x^p - t))$, $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
-Then $X$ is a variety since $x^p - t$ is irreducible in $k_0(t)$. The product of $X$ and $Y$, on the other hand, can be described as
+Then $X$ is a variety since $x^p - t$ is irreducible in $k[x]$. The product of $X$ and $Y$, on the other hand, can be described as
     \[
         X \times Y = \Spec(K[x]/(x^p - t)) = \Spec(K[x]/((x-t^{\frac{1}{p}})^p)
     \]
@@ -221,7 +222,7 @@ The cut and paste relation furthermore gives us
         \item If $Y \subset X$ is closed subvariety, then $\psi(X \setminus Y) = \psi(X) - \psi(Y)$.
         \item If $X$ and $Y$ are two varieties, then $\psi(X \times Y) = \psi(X)\psi(Y)$.
     \end{enumerate}
-    Hence $\psi$ factors over $\gring[k]$ and gives rise to a motivic measure.
+    Hence $\psi$ factors over $\gring[k]$ and gives rise to a motivic measure which we will also denote by $\psi$.
 \end{example}
 
 \begin{example}
@@ -236,8 +237,8 @@ The cut and paste relation furthermore gives us
 \end{example}
 
 This calculation also gives rise to an example of two irreducible varieties that have the same equivalence class in $\gring[k]$ but are not
-isomorphic: $\mathbb{P}^n \times (\mathbb{A}^1\setminus \{0\})$ and $\mathbb{A}^{n+1}$. These are not isomorphic since the global sections are
-are $k[x]_{x}$ for the former and $k[x_1,\dots,x_n]$ for the latter. On the other hand, in the Grothendieck ring we get
+isomorphic: $\mathbb{P}^n \times (\mathbb{A}^1\setminus \{0\})$ and $\mathbb{A}^{n+1}$. These are not isomorphic since the global sections 
+are $k[x]_{x}$ for the former and $k[x_1,\dots,x_{n+1}]$ for the latter. On the other hand, in the Grothendieck ring we get
 \begin{align*}
     [\mathbb{P}^n \times \left (\mathbb{A}^1 \setminus \{0\}\right )] &= [\mathbb{P}^n]\left ([\mathbb{A}^1] - 1\right ) \\
                                                                       &= \sum_{m=0}^n \mathbb{L}^{m+1} - \sum_{m=0}^n \mathbb{L}^m \\
@@ -248,12 +249,12 @@ Another interesting source of examples are (Zariski) locally trivial fibrations.
 \begin{definition}
     A morphism of schemes $f \colon X \to Y$ is called a (Zariski) locally trivial fibration with fibre $F$ if there exists an open cover of $Y$,
     $Y = \bigcup_{i} U_i$ such that $f^{-1}(U_i) \cong U_i \times F$ and $f|_{f^{-1}(U_i)} \colon f^{-1}(U_i) \cong U_i \times F \to U_i$ is
-    the projection on the first factor.
+    the projection onto the first factor.
 \end{definition}
 
 \begin{lemma}
-    \label{fibration}
-    Let $f \colon X \to Y$ be a locally trivial fibration with fibre $F$, then in the Grothendieck ring of varieties
+    \label{fibration}Let $X, Y$ and $F$ be varieties and
+    let $f \colon X \to Y$ be a locally trivial fibration with fibre $F$, then in the Grothendieck ring of varieties
     one has $[X] = [Y][F]$.
 \end{lemma}
 \begin{proof}
@@ -267,13 +268,15 @@ Another interesting source of examples are (Zariski) locally trivial fibrations.
         &= \left [ \bigcup_{i=1}^{n-1} U_i \right ][F] + [U_n][F] - \left [ U_n \cap \bigcup_{i=1}^{n-1} U_i\right ][F]
          = \left [ \bigcup_{i=1}^n U_i \right ][F].
     \end{align*}
+    Where the equation before last holds because $f$ locally looks like the projection so even after restricting to a smaller subset we still
+    have the required properties and can invoke the induction hypothesis.
 \end{proof}
 
 \begin{example}
     \label{projBundle}
     Suppose $f \colon E \to X$ is a projective $n$-space bundle, then, by definition, $f$ locally trivializes to the projection
-    $f^{-1}(U_i) \times \mathbb{P}^{n-1} \to U_i$ onto the first factor, so by the above theorem we have
-    $[E] = [X][\mathbb{P}^{n-1}]$. We will use this when we consider the motivic Zeta function for curves.
+    $U_i \times \mathbb{P}^n \to U_i$ onto the first factor, so by the above theorem we have
+    $[E] = [X][\mathbb{P}^n]$. We will use this when we consider the motivic Zeta function for curves.
 \end{example}
 
 We now investigate the structure of the Grothendieck ring. First we note that it suffices to take irreducible varieties to generate $\gring[k]$.
@@ -342,11 +345,11 @@ action of the symmetric group. This section follows the presentation in \cite[Ap
     over $S$ is called the 
     \emph{categorial quotient} (also denoted by $X/G$) of $Y$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
     $\pi \circ g = \pi$ and is universal in this respect, i.e.\ for every other $G$-invariant morphism $f \colon X \to Z$ there exists a unique
-    $G$-invariant morphism $g \colon Z \to Y$that makes the following diagram commute
+    $G$-invariant morphism $\tilde{f} \colon Z \to Y$that makes the following diagram commute
     \begin{equation*}
         \begin{tikzcd}
             X \arrow{r}{\pi} \arrow{d}{f} & X/G \\
-            Z \arrow[dashleftarrow]{ur}{g}
+            Z \arrow[dashleftarrow]{ur}{\tilde{f}}
         \end{tikzcd}.
     \end{equation*}
 \end{definition}
@@ -389,7 +392,7 @@ First we slightly rephrase the definition for the case of schemes.
     Let $X = \Spec{A}$ be an affine variety with a finite group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
     is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
 \end{lemma}
-\begin{proof}(We follow the proof in \cite{mustata}[Prop A.1])
+\begin{proof}(We follow the proof in \cite[Prop. A.1]{mustata})
     We first show that $\Spec(A^G)$ is again a variety. As a subring of a reduced $k$-algebra $A^G$ is again reduced, so what is left to check
     is that it is of finite type over $k$. Let $T_1,\dots,T_n$ be generators of $A$ as $k$-algebra. By passing to the union of the orbits of
     the $T_i$ we might assume that $G$ acts on the set of generators via permutations and hence can be seen as a subgroup of the 
@@ -401,7 +404,7 @@ First we slightly rephrase the definition for the case of schemes.
     So let $a \in A$, then we find a $f_a \in k[X_1,\dots,X_n]$ such that $f_a(T_1,\dots,T_n) = a$, and we find that $a$ is a zero of
     the polynomial
     \[
-        \prod_{g \in S_n} (X - g(a)) = \prod_{g \in G} (X - f_a(g(T_1),\dots,g(T_n))) \in A^{S_n}[X]
+        \prod_{g \in S_n} (X - g(a))  \in A^{S_n}[X]
     \]
     hence it is integral over $A^{S_n}$ (and thus also over $A^G$).
     This proves that $\Spec(A^G)$ is again a variety. To show that it is also the quotient of $X$ by the action of $X$ we check the properties
@@ -411,7 +414,7 @@ First we slightly rephrase the definition for the case of schemes.
     For $a \in \mathfrak{p}$ we have $\prod_{g \in G} ga \in \mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$, and since $\mathfrak{q} \cap A^G$
     is prime we find some $g \in G$ such that $ga \in \mathfrak{q} \cap A^G$ or equivalently 
     $a \in g^{-1}\mathfrak{q} \cap A^G \subset \mathfrak{q}$. Hence 
-    we find $\mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}$ and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
+    we have $\mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}$ and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
     contained in some $g\mathfrak{q}$. Because the situation is symmetric in $\mathfrak{p}$ and $\mathfrak{q}$ we find $h \in G$ such that
     $\mathfrak{q} \subset h\mathfrak{p}$, hence $\mathfrak{p} \subset g\mathfrak{q} \subset hg\mathfrak{p}$. Now we use the fact that
     for a integral extension two prime ideals with the same contraction, one subset of the other, must be equal. Applied to this
@@ -459,7 +462,7 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
     the hypersurface $V_+(y)$ contains $\bar{X} \setminus X$ but not the $g_1(x),\cdots,g_m(x)$, so $U \coloneqq D_+(y)$ 
     is an affine set that lies in $X$ and contains the orbit of $x$ under $G$. Now consider $U' \coloneqq \bigcap_{g \in G} g(U)$. This is clearly
     $G$-invariant and affine since $X$ is separated. 
-    Since $U$ contains the orbit of $y$ we still find that $y$ lies in $U'$. Hence we have found a open cover of X by
+    Since $U$ contains the orbit of $x$ we still find that $x$ lies in $U'$. Hence we have found a open cover of X by
     $G$-invariant open affines, and thus the quotient exists by the above lemma.
 \end{proof}
 
@@ -501,7 +504,8 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
     Note that $\pi(h)$ and $\pi(h')$ are polynomials in $T_3^2$ and $T_4^2$ so the degree in $T_3$ and $T_4$ is odd for 
     $T_3T_4\pi(h)$ and even for $\pi(h')$,
     hence equality can only hold if $h = h' = 0$. Thus $r$ has to be zero and $f$ lies in $(uv - w^2)$.
-    Putting it all togheter, $Sym^2(\mathbb{A}^2) \cong k[x_1,x_2,x_3,x_4,x_5]/(x_3x_4 - x_5^2)$. This is singular in the origin by the Jacobi
+    Putting it all togheter, $Sym^2(\mathbb{A}^2) \cong k[x_1,x_2,x_3,x_4,x_5]/(x_3x_4 - x_5^2)$. This is the product of the affine plane with
+    a cone which is singular in the origin by the Jacobi
     criterion.
 
 %    The action on $\mathbb{A}^4$ is given by exchanging points, so we may see this as linear action by the subgroup of $GL_n$ generated
@@ -600,10 +604,11 @@ Picard group.
     fact locally look like the projection of $Pic^0(X) \times \mathbb{P}^{n-g}$ onto the first factor.
 \end{proof}
 
-Using this in conjunction with Lemma \ref{fibration} we can obtain a nice closed form for the zeta function of an eliptic curve.
+Using this in conjunction with Lemma \ref{fibration} we can obtain a nice closed form for the zeta function of an elliptic curve.
 Recall that an elliptic curve is a smooth projective connected curve $E$ of genus $1$ with a distinguished rational point $P \in E$, the
-the map $E \to Pic^0(E), x \mapsto L(x-P)$ is then an isomorphism. By the above theorem the map $Sym^n(E) \to Pic^0(X)$ is a projective bundle for
-$n > 2g - 2 = 0$, i.e.\ it locally looks like the projection of $Pic^0(E) \times \mathbb{P}^n-1$ onto the first factor.
+map $E \to Pic^0(E), x \mapsto L(x-P)$ is then an isomorphism. By the above theorem the map $Sym^n(E) \to Pic^0(X)$ is a projective $n-g$-space
+bundle for
+$n > 2g - 2 = 0$, i.e.\ it locally looks like the projection of $Pic^0(E) \times \mathbb{P}^{n-1}$ onto the first factor.
 Thus by Lemma \ref{fibration} in the Grothendieck ring we have for $n>0$ 
 \begin{equation}
     [Sym^n(E)] = [Pic^0(E)][\mathbb{P}^{n-1}] = [E][\mathbb{P}^{n-1}].
@@ -617,8 +622,8 @@ Hence we calculate
 
 In the general case of positive genus we still get
 \begin{align*}
-    \zeta_{\mathrm{id}}(C,t) &= \sum_{n=0}^{2g-2} [Sym^n(C)] + \sum_{n=2g-1}^\infty [Pic^0(C)][\mathbb{P}^{n-1}]t^n\\
-                             &= \sum_{n=0}^{2g-2} [Sym^n(C)] + [Pic^0(C)]t\zeta_{\mathrm{id}}(\mathbb{P}^1, t).
+    \zeta_{\mathrm{id}}(C,t) &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + \sum_{n=2g-1}^\infty [Pic^0(C)][\mathbb{P}^{n-1}]t^n\\
+    &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + [Pic^0(C)]t(\zeta_{\mathrm{id}}(\mathbb{P}^1, t) - \sum_{n=0}^{2g-1} \mathbb{P}^nt^n).
 \end{align*}
 And thus we have shown that $\zeta_{\mathrm{id}}(C,t)$ is a rational function.
 
@@ -629,32 +634,32 @@ $Z(X,T) = \exp(\sum_{m=1}^\infty \frac{|X(\mathbb{F}_{q^m})|}{m}t^m)$. We would 
 \begin{definition}
     Let $X$ be a variety. A zero cycle on $X$ is a formal sum $\alpha = \sum_{x \in X_\mathrm{cl}} n_x x$, where the $n_x$ are integers,
     only finitely many non zero. We denote the group of zero cycles on $X$ as $Z_0(X)$. A zero cycle $\alpha$ is called
-    \emph{effective} if all the $n_x$ are non negative. We define the \emph{degree} of a cycle $\alpha$ as 
+    \emph{effective} if all the $n_x$ are nonnegative. We define the \emph{degree} of a cycle $\alpha$ as 
     $\deg(\alpha) \coloneqq \sum_{x \in X_{\mathrm{cl}}} n_x [\kappa(x):k]$.
 \end{definition}
 
 Recall that for the number of $\mathbb{F}_{q^m}$ rational points we have
-$|X(\mathbb{F}_{q^n})| = \sum_{e | n} |\{x \in X_{\mathrm{cl}} | \deg(x) = e\}|$. We write $a_e$ for the number of closed points with degree $e$.
+$|X(\mathbb{F}_{q^n})| = \sum_{e | n} e|\{x \in X_{\mathrm{cl}} | \deg(x) = e\}|$. We write $c_e$ for the number of closed points with degree $e$.
 
 Now we calculate
 \[
-\log(Z(X,t)) = \sum_{m=1}^\infty \frac{\sum_{e | m} e|\{x \in X_{\mathrm{cl}} | \deg(x) = e\}|}{n} t^n.
+\log(Z(X,t)) = \sum_{m=1}^\infty \frac{\sum_{e | m} ec_e | \deg(x) = e\}|}{n} t^n.
 \]
 
 Making a the substitution $n = er$ and using $\log(1-t) = - \sum_{m=1}^\infty \frac{t^m}{m}$ we get 
 \begin{align*}
-    \log(Z(X,t)) &= \sum_{r=1}^\infty \sum_{e=1}^\infty a_e \frac{t^{er}}{r} = \sum_{e=1}^\infty a_e log(1-t^e) \\
-    &= \sum_{e=1}^\infty log(1-t^{a_e e}) = log(\prod_{e=1}^\infty (1-t^e)^{a_e}.
+    \log(Z(X,t)) &= \sum_{r=1}^\infty \sum_{e=1}^\infty c_e \frac{t^{er}}{r} = \sum_{e=1}^\infty c_e log(1-t^e) \\
+    &= \sum_{e=1}^\infty log(1-t^{c_e e}) = log(\prod_{e=1}^\infty (1-t^e)^{c_e}.
 \end{align*}
 So after taking the exponential of both sides, we find that
 \begin{align*}
-    Z(X,t) &= \prod_{e=1} (1-t^e)^{a_e} = \prod_{x \in X_{\mathrm{cl}}} (1-t^{\deg(x)})^{-1}.\\
-           &= \prod_{x \in X_{\mathrm{cl}}} \sum_{k=0}^\infty t^{\deg(x)k} = \sum_{x \in Z_0(X)} t^{\deg(x)}
+    Z(X,t) &= \prod_{e=1} (1-t^e)^{c_e} = \prod_{x \in X_{\mathrm{cl}}} (1-t^{\deg(x)})^{-1}\\
+           &= \prod_{x \in X_{\mathrm{cl}}} \sum_{k=0}^\infty t^{\deg(x)k} = \sum_{x \in Z_0(X)} t^{\deg(x)}.
 \end{align*}
 Where we find the last equality by multiplying out.
 
-So to show that $Z(X,t) = \zeta_{\Psi}(X,T)$ 
-(where $\Psi$ is the motivic measure counting rational points that was introduced in Example \ref{countMeasure}) 
+So to show that $Z(X,t) = \zeta_{\psi}(X,T)$ 
+(where $\psi$ is the motivic measure counting rational points that was introduced in Example \ref{countMeasure}) 
 it suffices to show the following lemma.
 
 \begin{lemma}
@@ -676,7 +681,7 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
 
 \begin{definition}
     Let $G$ be a (multiplicative) monoid. Write $\mathbb{Z}[G]$ for the free abelian group over $G$, i.e. the set of formal sums
-    $\sum_{g \in G} n_g g$ with the $m_g$ being integers, only finitely many non zero.
+    $\sum_{g \in G} n_g g$ with the $n_g$ being integers, only finitely many non zero.
     Defining multiplication as
     \[
         \Big(\sum_{g \in G} n_g g\Big)\Big(\sum_{g \in G} m_g g \Big) = \sum_{g \in G} \Big(\sum_{hl = g} n_h m_l\Big) g
@@ -701,6 +706,11 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
         \phi \colon \gring[\mathbb{C}] \to \mathbb{Z} [G]
     \]
 \end{theorem}
+
+\begin{remark}
+    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
+    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
+\end{remark}
 
 %XXX: maybe rewrite the proof in a more "hands on" fashion to make clear why we check what we check and how \phi is defined
 %XXX: why is \phi multiplicative?
@@ -728,7 +738,7 @@ Before constructing a suitable monoid homomorphism that will yield our desired m
 of a variety as well as two basic results (all these are excercises in \cite[Ch. II]{Ha}).
 
 \begin{definition}
-    Let $X$ be a projective variety. The \emph{Hodge number} $h^{p,q}$ is given as the dimension of $H^q(X,\Omega^p_X)$, 
+    Let $X$ be a smooth projective variety. The \emph{Hodge number} $h^{p,q}$ is given as the dimension of $H^q(X,\Omega^p_X)$, 
     which is a finite dimensional $k$-vector space by a theorem of Serre (\cite[§3 Prop. 7]{FAC}).
     If $d$ is the dimension of a nonsingular variety $X$ we will also write $P_g(X)$ for $h^{d,0}(X)$, called the \emph{geometric genus} of $X$.
 \end{definition}
@@ -761,7 +771,7 @@ We need the following general lemma.
 \end{proof}
 
 \begin{lemma}
-    For the Hodge numbers of the projective space are given as
+    The Hodge numbers of the projective space are given as
     \[
         h^{p,q}(X) = 
         \begin{cases}
@@ -788,10 +798,6 @@ We need the following general lemma.
 \end{lemma}
 
 
-\begin{remark}
-    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
-    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
-\end{remark}
 \begin{definition}
     Denote by $C \subset \mathbb{Z}[t]$ the multiplicative monoid of polynomials with positive leading coefficient.
     For a smooth projective complex variety $Z$ of dimension $d$ define
@@ -918,7 +924,7 @@ We will use the following rationality criterion for power series.
 \begin{proof}
     Denote the above matrix by $A$. Since $\sum a_it^i$ is rational, we may write it as
     \[
-        \sum a_it^i = \frac{p_0 + \dots + p_et^e}{q_0 + \dots + q_d t^n}
+        \sum a_it^i = \frac{p_0 + \dots + p_et^e}{q_0 + \dots + q_n t^n}
     \]
     with not all $q_i$ being zero.
     Hence 
