@@ -107,9 +107,9 @@ is then finally proven in the last section.
 \section{German Summary}
 In dieser Bachelorarbeit soll ein Resultat von Larsen und Lunts (\cite{MR1996804}) über die Rationalität der sogenannten 
 \emph{motivischen Zetafunktion}
-bewiesen werden. Die Motivische Zetafunktion ist eine Verallgemeinerung der Hasse--Weil Zetafunktion für Varietäten über endlichen Körpern
+bewiesen werden. Die motivische Zetafunktion ist eine Verallgemeinerung der Hasse--Weil Zetafunktion für Varietäten über endlichen Körpern
 mit Koeffizienten im Grothendieckring der Varietäten $\gring[k]$. Dieser wird von Isomorphieklassen von algebraischen Varietäten erzeugt, 
-zwischen denen gewissen zusätzliche "cut-and-paste" Relationen bestehen (Siehe \ref{gringdef} für die genaue Definition). 
+zwischen denen gewisse zusätzliche "cut-and-paste" Relationen bestehen (Siehe Definition \ref{gringdef}). 
 Diese motivische Zetafunktion ist, im Gegensatz zur Hasse-Weil Zetafunktion, im allgemeinen nicht rational. 
 Konkret wird folgendes Resultat bewiesen.
 \begin{theorem}[{\cite[Thm. 1.6]{MR1996804}}]
@@ -198,7 +198,7 @@ Then $X$ is a variety since $x^p - t$ is irreducible in $k[x]$. The product of $
     \[
         X \times Y = \Spec(K[x]/(x^p - t)) = \Spec(K[x]/((x-t^{\frac{1}{p}})^p)
     \]
-which is not reduced. We might adapt the definition to this case by changing the defintion of the product to 
+which is not reduced. We might adapt the definition to this case by changing the definition of the product to 
 $[X][Y] \coloneqq [(X \times Y)_{\text{red}}]$, taking the induced reduced scheme structure on $X \times Y$, but since we are only working
 in characteristic zero or over finite fields we will not bother with this technical issue.
 \end{remark}
@@ -216,10 +216,11 @@ The cut and paste relation furthermore gives us
         \psi \colon \mathcal{V}_k & \to   \mathbb{Z}\\
         X & \mapsto |X(k)|
     \end{align*}
+    that counts the rational points of a variety.
     Observe that $\psi$ has the following properties:
     \begin{enumerate}
         \item If $X$ and $Y$ are isomorphic $k$-varieties, then $\psi(X) = \psi(Y)$.
-        \item If $Y \subset X$ is closed subvariety, then $\psi(X \setminus Y) = \psi(X) - \psi(Y)$.
+        \item If $Y \subset X$ is a closed subvariety, then $\psi(X \setminus Y) = \psi(X) - \psi(Y)$.
         \item If $X$ and $Y$ are two varieties, then $\psi(X \times Y) = \psi(X)\psi(Y)$.
     \end{enumerate}
     Hence $\psi$ factors over $\gring[k]$ and gives rise to a motivic measure which we will also denote by $\psi$.
@@ -237,10 +238,10 @@ The cut and paste relation furthermore gives us
 \end{example}
 
 This calculation also gives rise to an example of two irreducible varieties that have the same equivalence class in $\gring[k]$ but are not
-isomorphic: $\mathbb{P}^n \times (\mathbb{A}^1\setminus \{0\})$ and $\mathbb{A}^{n+1}$. These are not isomorphic since the global sections 
+isomorphic: $\mathbb{P}_k^n \times (\mathbb{A}^1\setminus \{0\})$ and $\mathbb{A}^{n+1}$. These are not isomorphic since the global sections 
 are $k[x]_{x}$ for the former and $k[x_1,\dots,x_{n+1}]$ for the latter. On the other hand, in the Grothendieck ring we get
 \begin{align*}
-    [\mathbb{P}^n \times \left (\mathbb{A}^1 \setminus \{0\}\right )] &= [\mathbb{P}^n]\left ([\mathbb{A}^1] - 1\right ) \\
+    [\mathbb{P}_k^n \times \left (\mathbb{A}^1 \setminus \{0\}\right )] &= [\mathbb{P}_k^n]\left ([\mathbb{A}^1] - 1\right ) \\
                                                                       &= \sum_{m=0}^n \mathbb{L}^{m+1} - \sum_{m=0}^n \mathbb{L}^m \\
                                                                       &= \mathbb{L}^{n+1}.
 \end{align*}
@@ -248,7 +249,7 @@ are $k[x]_{x}$ for the former and $k[x_1,\dots,x_{n+1}]$ for the latter. On the 
 Another interesting source of examples are (Zariski) locally trivial fibrations.
 \begin{definition}
     A morphism of schemes $f \colon X \to Y$ is called a (Zariski) locally trivial fibration with fibre $F$ if there exists an open cover of $Y$,
-    $Y = \bigcup_{i} U_i$ such that $f^{-1}(U_i) \cong U_i \times F$ and $f|_{f^{-1}(U_i)} \colon f^{-1}(U_i) \cong U_i \times F \to U_i$ is
+    $Y = \bigcup_{i} U_i$, such that $f^{-1}(U_i) \cong U_i \times F$ and $f|_{f^{-1}(U_i)} \colon f^{-1}(U_i) \cong U_i \times F \to U_i$ is
     the projection onto the first factor.
 \end{definition}
 
@@ -258,7 +259,7 @@ Another interesting source of examples are (Zariski) locally trivial fibrations.
     one has $[X] = [Y][F]$.
 \end{lemma}
 \begin{proof}
-    Suppose $Y = \bigcup_{i=1}^n U_i$ such that $f$ is trivial over $U_i$. Set $V_i = f^{-1}(U_i)$, by assumption we have $[V_i] = [U_i][F]$. 
+    Suppose $Y = \bigcup_{i=1}^n U_i$, such that $f$ is trivial over $U_i$. Set $V_i = f^{-1}(U_i)$, by assumption we have $[V_i] = [U_i][F]$. 
     Let us argue by induction over n, so suppose we know that 
     $\left[ \bigcup_{i=1}^{n-1} V_i \right] = \left[\bigcup_{i=1}^{n-1} U_i \right][F]$, then
     \begin{align*}
@@ -268,15 +269,15 @@ Another interesting source of examples are (Zariski) locally trivial fibrations.
         &= \left [ \bigcup_{i=1}^{n-1} U_i \right ][F] + [U_n][F] - \left [ U_n \cap \bigcup_{i=1}^{n-1} U_i\right ][F]
          = \left [ \bigcup_{i=1}^n U_i \right ][F].
     \end{align*}
-    Where the equation before last holds because $f$ locally looks like the projection so even after restricting to a smaller subset we still
+    Where the equation before last holds because $f$ locally looks like the projection so even after restricting to a smaller open set we still
     have the required properties and can invoke the induction hypothesis.
 \end{proof}
 
 \begin{example}
     \label{projBundle}
     Suppose $f \colon E \to X$ is a projective $n$-space bundle, then, by definition, $f$ locally trivializes to the projection
-    $U_i \times \mathbb{P}^n \to U_i$ onto the first factor, so by the above theorem we have
-    $[E] = [X][\mathbb{P}^n]$. We will use this when we consider the motivic Zeta function for curves.
+    $U_i \times \mathbb{P}_k^n \to U_i$ onto the first factor, so by the above theorem we have
+    $[E] = [X][\mathbb{P}_k^n]$. We will use this when we consider the motivic Zeta function for curves.
 \end{example}
 
 We now investigate the structure of the Grothendieck ring. First we note that it suffices to take irreducible varieties to generate $\gring[k]$.
@@ -343,7 +344,7 @@ action of the symmetric group. This section follows the presentation in \cite[Ap
     Let $X$ be an $S$-Scheme, $G$ a group acting on $X$ (from the right) 
     via $S$-automorphisms. Then a variety $Y$ together with a morphism $\pi \colon X \to Y$
     over $S$ is called the 
-    \emph{categorial quotient} (also denoted by $X/G$) of $Y$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
+    \emph{categorial quotient} (also denoted by $X/G$) of $X$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
     $\pi \circ g = \pi$ and is universal in this respect, i.e.\ for every other $G$-invariant morphism $f \colon X \to Z$ there exists a unique
     $G$-invariant morphism $\tilde{f} \colon Z \to Y$that makes the following diagram commute
     \begin{equation*}
@@ -362,7 +363,7 @@ action of the symmetric group. This section follows the presentation in \cite[Ap
 
 We first construct the quotient in the affine case. If we were actually taking the quotient in the category of affine schemes things would be
 quite simple: we could as well work in the category of rings and construct something that might be called a co-quotient, i.e.\ an object that
-satisfies the conditions of the definition, just with all arrows reversed (now $G$ is a right-action). This is simply the $G$ invariant ring
+satisfies the conditions of the definition, just with all arrows reversed. This is simply the $G$ invariant ring
 $A^G \coloneqq \{a \in A | ga = a \ \forall g \in G\} \subset A$. Hence in the category of affine schemes the quotient would be given by 
 $\Spec(A) \to \Spec(A^G)$. But since we would like to take quotients in the full category of schemes we have to do some more work.
 First we slightly rephrase the definition for the case of schemes.
@@ -373,7 +374,7 @@ First we slightly rephrase the definition for the case of schemes.
     \begin{enumerate}[label=\rm{\roman*)}]
         \item The fibres of $\pi$ are in one to one correspondence to the orbits of the $G$-action.
         \item $Y$ carries the quotient topology.
-        \item There exists a unique isomorphism $\mathcal{O}_X = {\pi_*\mathcal{O}_Y}^G$
+        \item There exists a unique isomorphism $\mathcal{O}_Y = {\pi_*\mathcal{O}_X}^G$
     \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -401,7 +402,7 @@ First we slightly rephrase the definition for the case of schemes.
     It is now enough to show that $A$ is integral over $A^{S_n}$. Then $A$ is of finite type and integral over $A^{S_n}$ and hence
     finite. Since $A^{S_n}$ is noetheriean $A^G$, as a submodule of $A$, 
     is then again a finite module over $A^{S_n}$ hence of finite type over $k$.
-    So let $a \in A$, then we find a $f_a \in k[X_1,\dots,X_n]$ such that $f_a(T_1,\dots,T_n) = a$, and we find that $a$ is a zero of
+    So let $a \in A$ then we find that $a$ is a zero of
     the polynomial
     \[
         \prod_{g \in S_n} (X - g(a))  \in A^{S_n}[X]
@@ -409,11 +410,11 @@ First we slightly rephrase the definition for the case of schemes.
     hence it is integral over $A^{S_n}$ (and thus also over $A^G$).
     This proves that $\Spec(A^G)$ is again a variety. To show that it is also the quotient of $X$ by the action of $X$ we check the properties
     i) to iii) of \ref{quotProps}. Let us prove the first property.
-    Since we have $g\mathfrak{p} \cap A^G$ = $\mathfrak{p} \cap A^G$ each orbit is contained in some fibre. For the converse assume we have
+    Since we have $g\mathfrak{p} \cap A^G$ = $\mathfrak{p} \cap A^G$ each orbit is contained in some fibre. For the converse assume that we have
     prime ideals $\mathfrak{p},\mathfrak{q} \subset A$ such that $\mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$.
     For $a \in \mathfrak{p}$ we have $\prod_{g \in G} ga \in \mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$, and since $\mathfrak{q} \cap A^G$
     is prime we find some $g \in G$ such that $ga \in \mathfrak{q} \cap A^G$ or equivalently 
-    $a \in g^{-1}\mathfrak{q} \cap A^G \subset \mathfrak{q}$. Hence 
+    $a \in g^{-1}\mathfrak{q} \cap A^G \subset g^{-1}\mathfrak{q}$. Hence 
     we have $\mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}$ and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
     contained in some $g\mathfrak{q}$. Because the situation is symmetric in $\mathfrak{p}$ and $\mathfrak{q}$ we find $h \in G$ such that
     $\mathfrak{q} \subset h\mathfrak{p}$, hence $\mathfrak{p} \subset g\mathfrak{q} \subset hg\mathfrak{p}$. Now we use the fact that
@@ -583,7 +584,7 @@ this works in general whenever the curve in question has a rational point.
 So let $C$ be a smooth projective connected curve of genus $g > 0$ with a distinguished (rational) point $P \in C$.
 
 There is a deep result that describes the symmetric product of a curve as a projective bundle over the so called Picard variety. We will
-not introduce it here in full generality. The idea is that the we can give the Picard group of a variety a natural structure of a group scheme,
+not introduce it here in full generality. The idea is that the we can give the Picard group of a variety a natural group scheme structure,
 such that we have a bijection between the closed points of the Picard variety and the classical
 Picard group. 
 
@@ -600,30 +601,30 @@ Picard group.
     The fibre over some $\mathcal{L}(D - nP)$, for $D = \sum x_i$ is the complete linear system $|D| = \mathbb{P}(H^0(C, \mathcal{L}(D)))$.
     As usual, denote by $l(D)$ the dimension of the global sections of $\mathcal{L}(D)$, then Riemann-Roch tells us 
     that $l(D) - l(K-D) = deg(D) - g + 1 = n - g + 1$, but since $deg(K) = 2g-2$, for $n > 2g-2$ we find $l(K-D) = 0$, and hence
-    $l(D) = n-g+1$, so the fibre is indeed isomorphic to $\mathbb{P}^{n-g}$. It of course remains to show that the morphism does in
-    fact locally look like the projection of $Pic^0(X) \times \mathbb{P}^{n-g}$ onto the first factor.
+    $l(D) = n-g+1$, so the fibre is indeed isomorphic to $\mathbb{P}_k^{n-g}$. It of course remains to show that the morphism does in
+    fact locally look like the projection of $Pic^0(X) \times \mathbb{P}_k^{n-g}$ onto the first factor.
 \end{proof}
 
 Using this in conjunction with Lemma \ref{fibration} we can obtain a nice closed form for the zeta function of an elliptic curve.
 Recall that an elliptic curve is a smooth projective connected curve $E$ of genus $1$ with a distinguished rational point $P \in E$, the
-map $E \to Pic^0(E), x \mapsto L(x-P)$ is then an isomorphism. By the above theorem the map $Sym^n(E) \to Pic^0(X)$ is a projective $n-g$-space
+map $E \to Pic^0(E), x \mapsto \mathcal{L}(x-P)$ is then an isomorphism. By the above theorem the map $Sym^n(E) \to Pic^0(X)$ is a projective $n-g$-space
 bundle for
-$n > 2g - 2 = 0$, i.e.\ it locally looks like the projection of $Pic^0(E) \times \mathbb{P}^{n-1}$ onto the first factor.
+$n > 2g - 2 = 0$. 
 Thus by Lemma \ref{fibration} in the Grothendieck ring we have for $n>0$ 
 \begin{equation}
-    [Sym^n(E)] = [Pic^0(E)][\mathbb{P}^{n-1}] = [E][\mathbb{P}^{n-1}].
+    [Sym^n(E)] = [Pic^0(E)][\mathbb{P}_k^{n-1}] = [E][\mathbb{P}_k^{n-1}].
 \end{equation}
 Hence we calculate
 \begin{align*}
-    \zeta_{\mathrm{id}}(E,t) &= \sum_{n=0}^{\infty} [Sym^n(E)] = 1 + \sum_{n=1}^\infty [E][\mathbb{P}^{n-1}]t^n \\
-                             &= 1 + [E]t \sum_{n=1}[\mathbb{P}^{n-1}]t^{n-1} = 1 + [E]t \zeta_{\mathrm{id}}(\mathbb{P}^1, t)\\
-                             &= 1 + \frac{[E]t}{(1-t)(1-\mathbb{L}t)} = \frac{1 + ([E]-[\mathbb{P}^1])t + \mathbb{L}t^2}{(1-t)(1-\mathbb{L}t)}.
+    \zeta_{\mathrm{id}}(E,t) &= \sum_{n=0}^{\infty} [Sym^n(E)] = 1 + \sum_{n=1}^\infty [E][\mathbb{P}_k^{n-1}]t^n \\
+                             &= 1 + [E]t \sum_{n=1}[\mathbb{P}_k^{n-1}]t^{n-1} = 1 + [E]t \zeta_{\mathrm{id}}(\mathbb{P}_k^1, t)\\
+                             &= 1 + \frac{[E]t}{(1-t)(1-\mathbb{L}t)} = \frac{1 + ([E]-[\mathbb{P}_k^1])t + \mathbb{L}t^2}{(1-t)(1-\mathbb{L}t)}.
 \end{align*}
 
 In the general case of positive genus we still get
 \begin{align*}
-    \zeta_{\mathrm{id}}(C,t) &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + \sum_{n=2g-1}^\infty [Pic^0(C)][\mathbb{P}^{n-1}]t^n\\
-    &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + [Pic^0(C)]t(\zeta_{\mathrm{id}}(\mathbb{P}^1, t) - \sum_{n=0}^{2g-1} \mathbb{P}^nt^n).
+    \zeta_{\mathrm{id}}(C,t) &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + \sum_{n=2g-1}^\infty [Pic^0(C)][\mathbb{P}_k^{n-1}]t^n\\
+    &= \sum_{n=0}^{2g-2} [Sym^n(C)]t^n + [Pic^0(C)]t(\zeta_{\mathrm{id}}(\mathbb{P}_k^1, t) - \sum_{n=0}^{2g-1} \mathbb{P}_k^nt^n).
 \end{align*}
 And thus we have shown that $\zeta_{\mathrm{id}}(C,t)$ is a rational function.
 
@@ -649,22 +650,22 @@ Now we calculate
 Making a the substitution $n = er$ and using $\log(1-t) = - \sum_{m=1}^\infty \frac{t^m}{m}$ we get 
 \begin{align*}
     \log(Z(X,t)) &= \sum_{r=1}^\infty \sum_{e=1}^\infty c_e \frac{t^{er}}{r} = \sum_{e=1}^\infty c_e log(1-t^e) \\
-    &= \sum_{e=1}^\infty log(1-t^{c_e e}) = log(\prod_{e=1}^\infty (1-t^e)^{c_e}.
+                 &= \sum_{e=1}^\infty log(1-t^{c_e e}) = log(\prod_{e=1}^\infty (1-t^e)^{c_e}).
 \end{align*}
 So after taking the exponential of both sides, we find that
 \begin{align*}
     Z(X,t) &= \prod_{e=1} (1-t^e)^{c_e} = \prod_{x \in X_{\mathrm{cl}}} (1-t^{\deg(x)})^{-1}\\
-           &= \prod_{x \in X_{\mathrm{cl}}} \sum_{k=0}^\infty t^{\deg(x)k} = \sum_{x \in Z_0(X)} t^{\deg(x)}.
+           &= \prod_{x \in X_{\mathrm{cl}}} \sum_{k=0}^\infty t^{\deg(x)k} = \sum_{\alpha \in Z_0(X)} t^{\deg(\alpha)}.
 \end{align*}
-Where we find the last equality by multiplying out.
-
+Where we find the last equality by multiplying out. This also shows that $Z(X,t)$ is in fact a power series with integer coefficients, which
+was not clear from the definition.
 So to show that $Z(X,t) = \zeta_{\psi}(X,T)$ 
 (where $\psi$ is the motivic measure counting rational points that was introduced in Example \ref{countMeasure}) 
 it suffices to show the following lemma.
 
 \begin{lemma}
     Let $X$ be a variety over a finite field $k$. Then the number of $k$-rational points of the $n$-fold symmetric product agrees
-    with the number of effective zero cycles on X.
+    with the number of effective zero cycles on X of degree $n$.
 \end{lemma}
 \begin{proof}
     This is clear in the case that $k$ is algebraically closed, since then the degree of a closed point is one, so taking formal sums of
@@ -681,13 +682,18 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
 
 \begin{definition}
     Let $G$ be a (multiplicative) monoid. Write $\mathbb{Z}[G]$ for the free abelian group over $G$, i.e. the set of formal sums
-    $\sum_{g \in G} n_g g$ with the $n_g$ being integers, only finitely many non zero.
+    $\sum_{g \in G} n_g g$ with the $n_g$ being integers, only finitely many nonzero.
     Defining multiplication as
     \[
         \Big(\sum_{g \in G} n_g g\Big)\Big(\sum_{g \in G} m_g g \Big) = \sum_{g \in G} \Big(\sum_{hl = g} n_h m_l\Big) g
     \]
     this forms a ring, the \emph{monoid ring} over $G$.
 \end{definition}
+
+\begin{remark}
+    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
+    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
+\end{remark}
 
 \begin{theorem}
     \label{th1}
@@ -706,12 +712,6 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
         \phi \colon \gring[\mathbb{C}] \to \mathbb{Z} [G]
     \]
 \end{theorem}
-
-\begin{remark}
-    By \cite[Prop. 10.1 (d)]{Ha} the product of two smooth varieties over $k$ is again smooth. Hence the isomorphism classes of smooth
-    irreducible complete varieties form a multiplicative monoid, in the following denoted by $\mathcal{M}$.
-\end{remark}
-
 %XXX: maybe rewrite the proof in a more "hands on" fashion to make clear why we check what we check and how \phi is defined
 %XXX: why is \phi multiplicative?
 \begin{proof}
@@ -728,14 +728,14 @@ and complete varieties. For this we quickly recall the notion of a monoid ring.
     and hence is birational to $\mathbb{P}_k^n \times Z$. 
     We can thus write $\psi([f^{-1}(Z)])$ as  
     \[
-        \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}^n]) = \psi([Z][\mathbb{P}^n]) = \psi([Z])\psi([\mathbb{P}^n]) = \psi([Z])
+        \psi([f^{-1}(Z)]) = \psi([Z \times \mathbb{P}_k^n]) = \psi([Z][\mathbb{P}_k^n]) = \psi([Z])\psi([\mathbb{P}_k^n]) = \psi([Z])
     \]
     where the last equation holds because of property ii).
     Hence, we can extend $\psi$ to define a morphism $\phi \colon \gring[\mathbb{C}] \to \mathbb{Z} [G]$
 \end{proof}
 
 Before constructing a suitable monoid homomorphism that will yield our desired measure, we recall the definition of the Hodge numbers
-of a variety as well as two basic results (all these are excercises in \cite[Ch. II]{Ha}).
+of a variety as well as two basic results.
 
 \begin{definition}
     Let $X$ be a smooth projective variety. The \emph{Hodge number} $h^{p,q}$ is given as the dimension of $H^q(X,\Omega^p_X)$, 
@@ -783,15 +783,15 @@ We need the following general lemma.
 \begin{proof}
     We argue by induction on $p$. 
     For $p = 0$ this is the cohomology of the structure sheaf on projective space for which we have the claimed dimensions.
-    For the induction step recall that we have the euler exact sequence 
+    For the induction step recall that we have the Euler exact sequence 
     \[0 \to \Omega_{\mathbb{P}_k^n} \to {\mathcal{O}_{\mathbb{P}_k^n}(-1)}^{\oplus n+1} \to \mathcal{O}_{\mathbb{P}_k^n} \to 0 .\]
     Since all these sheaves are locally free of finite rank we may apply Lemma \ref{ses} to this sequence to obtain
     \[
-        0 \to \Omega_{\mathbb{P}^n}^p \to {\mathcal{O}(-p-1)}^{\oplus \binom{n}{p+1}} \to \Omega_{\mathbb{P}^n}^{p-1} \to 0
+        0 \to \Omega_{\mathbb{P}_k^n}^p \to {\mathcal{O}(-p-1)}^{\oplus \binom{n}{p+1}} \to \Omega_{\mathbb{P}_k^n}^{p-1} \to 0
     \]
-    This yields a long exact sequence in homology. Now, since $H^i(\mathbb{P}^n, \mathcal{O}(-p)) = 0$ for $0 < i < p+1$ these all vanish.
-    By induction hypothesis only $H^{p-1}(\mathbb{P}^n, \Omega^{p-1})$ does not vanish, so it must be isomorphic to 
-    $H^{p}(\mathbb{P}^n, \Omega^p)$. This proves the lemma.
+    This yields a long exact sequence in homology. Now, since $H^i(\mathbb{P}_k^n, \mathcal{O}(-p)) = 0$ for $0 < i < p+1$ these all vanish.
+    By induction hypothesis only $H^{p-1}(\mathbb{P}_k^n, \Omega^{p-1})$ does not vanish, so it must be isomorphic to 
+    $H^{p}(\mathbb{P}_k^n, \Omega^p)$. This proves the lemma.
 \end{proof}
 \begin{lemma}[Chow, {\cite[II Ex. 4.10]{Ha}}]
     Every proper variety is birational to a projective variety.
@@ -810,8 +810,8 @@ We need the following general lemma.
     to $Z$ and setting $\Psi_h(Z) \coloneqq \Psi_h(X)$. This is well defined by Lemma \ref{bir}.
 \end{definition}
 
-We now check that $\Psi_h$ satisfies all conditions of Theorem \ref{th1}. Independence of birational equivalence class was the content of Lemma
-\ref{bir}, and we have $\Psi_h(\mathbb{P}^n) = 1$ because of our previous calculations of the hodge number of projective space.
+We now check that $\Psi_h$ satisfies all conditions of Theorem \ref{th1}. Independence of birational equivalence class was the content of lemma
+\ref{bir}, and we have $\Psi_h(\mathbb{P}_k^n) = 1$ because of our previous calculations of the Hodge number of projective space.
 
 To check multiplicativity, we use the following lemma.
 
@@ -834,7 +834,7 @@ To check multiplicativity, we use the following lemma.
         &\cong \bigoplus_{i+j = p} H^0(X \times Y, \pi_X^*\Omega^i_X \otimes \pi_Y^*\Omega^j_Y) \\
         & \cong \bigoplus_{i+j = p} H^0(X, \Omega^i_X) \otimes H^0(Y, \Omega^j_Y).
     \end{align*}
-    Now the lemma follows by taking the dimension on both sides.
+    Now the lemma follows by taking the dimension of both sides.
 \end{proof}
 %TODO: mention that this can be seen as a special case of the künneth theorem
 With this we directly calculate 
