@@ -13,7 +13,7 @@
 - Seite 4: rationalitaet -> Rationalitaet
     fixed
 - Seite 4: im Kontext... -> mit Werten im Grothendieckring der algebraischen Varietaeten, der von Isomorphieklassen von algebraischen Varietaeten modulo bestimmter "cut-and-paste"-Relationen.
-    TODO
+    fixed
 - Definition 3.2: this forms -> this datum forms
     fixed
 - Definition 3.1 ist eigentlich keine Definition und koennte auch Fliesstext sein.
@@ -53,13 +53,13 @@
 - Warum kann man annehmen, dass G via Permutation auf den T_i operiert? Evlt. noch ein kleines Argument anfuegen.
     argument davor?
 - Im Beweis von Lemma 4.5: einige Kommas koennten die Saetze uebersichtlicher gestalten.
-    TODO
+    TODO (partially)
 - Seite 9: A^S_n -> A^{S_n}
     fixed
 - Example 4.9: P^1-> \mathbb{P}^1 und P^n->\mathbb{P}^n
     
 - Ende von Abschnitt 4: Hier koennte man noch den Zusammenhang mit der Hasse-Weil Zetafunktion erwaehnen.
-    TODO
+    TODO (partially)
 - Def. 5.1: ...form a ring, the monoid ring over G. (Komma, kein Doppelpunkt)
     done
 - Lemma 5.4 und 5.5 koennten evtl.  noch genauer ausgefuehrt werden, wenn du noch Zeit hast.
