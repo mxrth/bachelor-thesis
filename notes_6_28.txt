@@ -1,0 +1,27 @@
+- Seite 3, 2. paragraph: Die Koeffizienten sind jetzt nicht unbedingt im
+Grothendieck ring; vielleicht kann man das noch etwas genauer formulieren.
+- Seite 4, nach Thm. 1.1: grothendieck -> Grothendieck, the proof of Theorem 1.1, There -> There, (mit Komma), see -> exhibit, Construction -> The construction
+- Im German summary koenntest du noch nach Theorem 2.1 erwaehnen, dass dein Beweis etwas einfacher als der originale Beweis von Larsen und Lunts ist.
+- Seite 5, Hence multiplication -> Hence the multiplication in the Grothendieck ring is well-defined
+- Remark 3.2: Bitte nicht direkt nach einem Komma mit einer Formel beginnen. "Y=..."
+- Remark 3.2: defntion->definition
+- Example 3.4: where we write $\mathbb{L}$ for \emph{the Lefschetz motive}, the isomorphism class of the affine line.
+- Nach Example 3.4: die globalen Schnitte von \mathbb{A}^{n+1} sollte n+1 Erzeugende haben.
+- Nach Example 3.7: disjoint union of closed subsets? Nicht evtl. open subsets?
+- Abschnitt 4, erster paragraph: Fussnote ist durch ein Leerzeichen getrennt.
+- Def. 4.1: Bitte nicht nach einem Satzzeichen direkt mit einer Formel beginnen "S-scheme, G"-> "S-scheme and G"; ausserdem: S-Scheme -> S-scheme
+- Seite 8, letzter paragraph: "actually" is actually not necessary
+- Seite 8, letzter paragraph: now-> where
+- Seite 9, erste Zeile: $G$ invariant ring-> the ring of $G$-invariants.
+- Lemma 4.5: is -> it is
+- Beweis von Lemma 4.5: "By passing to the orbits of T_i..." verstehe ich nicht
+- Seite 10, direkt nach Remark 4.6: an quasi-projective-> a quasi-projective
+- Def. 4.9: ...quasiprojective variety. Then the n-fold...
+- Example 4.10: independeent->independent
+- Example 4.12 fehlt teilweise
+- Theorem 4.15: Wenn du "proof" schreibst sollte auch ein mehr oder weniger vollstaendiger Beweis vorkommen. Evlt. kannst du auch Sketch of Proof oder so aehnlich schreiben.
+- Def. 4.16: non zero-> non-zero
+- Seite 14: log vs. \log im zweiten Display
+- Nach Lemma 5.4: hodge -> Hodge
+- Lemma 5.6: "For" ist nicht noetig
+- Seite 17, hodge-> Hodge

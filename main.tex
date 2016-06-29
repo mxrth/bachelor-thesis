@@ -20,7 +20,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definiton}
+\newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 
@@ -99,9 +99,9 @@ We will first introduce the Grothendieck ring in Section \ref{sec1} and investig
 This culminates in a structure theorem due to Bittner (\cite[Thm 3.1]{Bittner}) which will allow us to substantially simplify the original 
 proof.
 The second section is devoted to the definition of the motivic zeta function, which entails defining and giving examples for the symmetric 
-product. There we will also see the connection between the classical Hasse--Weil zeta function and the motivic one as well as a glimpse of
+product. There, we will also exhibit the connection between the classical Hasse--Weil zeta function and the motivic one as well as a glimpse of
 Kapranovs proof of the rationality for curves.
-Construction of the motivic measure $\mu_h$ under wich $Z_{\mu_h}(X,t)$ becomes irrational is content of Section \ref{const} while irrationality
+The construction of the motivic measure $\mu_h$ under wich $Z_{\mu_h}(X,t)$ becomes irrational is content of Section \ref{const} while irrationality
 is then finally proven in the last section.
 
 \section{German Summary}
@@ -189,11 +189,11 @@ To see that this is really a ring we have to check that multiplication is compat
     [Z] ([X \setminus Y])   &= [Z \times (X \setminus Y)] = [(Z \times X) \setminus (Z \times Y)] \\
                             &= [Z \times X] - [Z \times Y] = [Z]([X] - [Y]).
 \end{align*}
-Hence multiplication is well defined.
+Hence the multiplication in the Grothendieck ring is well defined.
 
 \begin{remark}
 The reason we require $k$ to be perfect is that for nonperfect $k$ the product of two varieties need not be reduced. Take for example
-$k = k_0(t)$ with $k_0$ of characteristic $p > 0$ and $X = \Spec(k[x]/(x^p - t))$, $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
+$k = k_0(t)$ with $k_0$ of characteristic $p > 0$ and set $X = \Spec(k[x]/(x^p - t))$ and $Y = \Spec(K) \coloneqq \Spec(k(t^{\frac{1}{p}}))$. 
 Then $X$ is a variety since $x^p - t$ is irreducible in $k[x]$. The product of $X$ and $Y$, on the other hand, can be described as
     \[
         X \times Y = \Spec(K[x]/(x^p - t)) = \Spec(K[x]/((x-t^{\frac{1}{p}})^p)
@@ -234,7 +234,7 @@ The cut and paste relation furthermore gives us
     \[
         [\mathbb{P}_k^n] = \sum_{m=0}^n \mathbb{L}^m.
     \]
-    where we write $\mathbb{L}$ for the isomorphism class of the affine line.
+    where we write $\mathbb{L}$ for the \emph{Lefschetz motive}, the isomorphism class of the affine line.
 \end{example}
 
 This calculation also gives rise to an example of two irreducible varieties that have the same equivalence class in $\gring[k]$ but are not
@@ -336,12 +336,12 @@ We are going to use Theorem \ref{bittner} in the following form which we proved 
 
 \section{Symmetric Products and the Motivic Zeta Function}
 \label{symProd}
-We now want to introduce the concept of the symmetric product, i.e. how it can be defined as the quotient of the (regular) product by the
-action of the symmetric group. This section follows the presentation in \cite[Appendix A]{mustata}
-\footnote{which is based on \cite[§7]{MumAV}} and \cite[Lecture 10]{harris}.
+We now want to introduce the concept of the symmetric product, i.e.\ how it can be defined as the quotient of the (regular) product by the
+action of the symmetric group. This section follows the presentation in \cite[Appendix A]{mustata}\footnote{which is based on \cite[§7]{MumAV}}
+and \cite[Lecture 10]{harris}.
 %%TODO: Appendix -> App.? Lecture ->?
 \begin{definition}
-    Let $X$ be an $S$-Scheme, $G$ a group acting on $X$ (from the right) 
+    Let $X$ be an $S$-scheme and $G$ a group acting on $X$ (from the right) 
     via $S$-automorphisms. Then a variety $Y$ together with a morphism $\pi \colon X \to Y$
     over $S$ is called the 
     \emph{categorial quotient} (also denoted by $X/G$) of $X$ by $G$ if $\pi$ is $G$-invariant which means that for all $g \in G$ we have
@@ -361,9 +361,9 @@ action of the symmetric group. This section follows the presentation in \cite[Ap
     In the following we construct the quotient in the case that $G$ is finite and the scheme $X$ is a quasiprojective variety.
 \end{remark}
 
-We first construct the quotient in the affine case. If we were actually taking the quotient in the category of affine schemes things would be
+We first construct the quotient in the affine case. If we were taking the quotient in the category of affine schemes things would be
 quite simple: we could as well work in the category of rings and construct something that might be called a co-quotient, i.e.\ an object that
-satisfies the conditions of the definition, just with all arrows reversed. This is simply the $G$ invariant ring
+satisfies the conditions of the definition, just with all arrows reversed. This is simply the ring of $G$-invariants
 $A^G \coloneqq \{a \in A | ga = a \ \forall g \in G\} \subset A$. Hence in the category of affine schemes the quotient would be given by 
 $\Spec(A) \to \Spec(A^G)$. But since we would like to take quotients in the full category of schemes we have to do some more work.
 First we slightly rephrase the definition for the case of schemes.
@@ -378,7 +378,7 @@ First we slightly rephrase the definition for the case of schemes.
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    The first two properties ensure that $\pi$ is a quotient of topological spaces, i.e. $\pi$ is a universally $G$-invariant continous map.
+    The first two properties ensure that $\pi$ is a quotient of topological spaces, i.e.\ $\pi$ is a universally $G$-invariant continous map.
     By the discussion above, the third condition ensures that now actually all these morphisms are also morphism of locally ringed spaces.
 \end{proof}
 
@@ -391,7 +391,7 @@ First we slightly rephrase the definition for the case of schemes.
 \begin{lemma}
     \label{quotAffine}
     Let $X = \Spec{A}$ be an affine variety with a finite group $G$ acting on it. Then the categorial quotient exists, is itself a variety and
-    is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
+    it is given by $X/G = \Spec(A^G)$, the spectrum of the $G$-invariant subring of $A$.
 \end{lemma}
 \begin{proof}(We follow the proof in \cite[Prop. A.1]{mustata})
     We first show that $\Spec(A^G)$ is again a variety. As a subring of a reduced $k$-algebra $A^G$ is again reduced, so what is left to check
@@ -434,7 +434,7 @@ First we slightly rephrase the definition for the case of schemes.
     an action of $G$ on $B$ via automorphisms of graded $k$-algebras, then we may construct the quotient directly as $X/G = \Proj(B^G)$.
 \end{remark}
 
-We now turn to a relevant special case: the quotient of an quasiprojective variety $X$ by the action of a finite group $G$, using the following
+We now turn to a relevant special case: the quotient of a quasiprojective variety $X$ by the action of a finite group $G$, using the following
 general result.
 
 \begin{lemma}[{\cite[Prop. 1.8]{SGA1}}]    
@@ -461,15 +461,15 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
     Hence the ideal $\mathfrak{q}$ is not contained in any of the $\mathfrak{p}_i$s hence, by the graded version of the prime
     avoidance lemma, we find an element with positive degree $y \in \mathfrak{q}$ that is contained in none of the $\mathfrak{p}_i$ and hence
     the hypersurface $V_+(y)$ contains $\bar{X} \setminus X$ but not the $g_1(x),\cdots,g_m(x)$, so $U \coloneqq D_+(y)$ 
-    is an affine set that lies in $X$ and contains the orbit of $x$ under $G$. Now consider $U' \coloneqq \bigcap_{g \in G} g(U)$. This is clearly
-    $G$-invariant and affine since $X$ is separated. 
+    is an affine set that lies in $X$ and contains the orbit of $x$ under $G$. Now consider $U' \coloneqq \bigcap_{g \in G} g(U)$. 
+    This is clearly $G$-invariant and affine since $X$ is separated. 
     Since $U$ contains the orbit of $x$ we still find that $x$ lies in $U'$. Hence we have found a open cover of X by
     $G$-invariant open affines, and thus the quotient exists by the above lemma.
 \end{proof}
 
 \begin{definition}
     \label{symdef}
-    Let $X$ be a quasiprojective variety, then the $n$-fold \emph{symmetric product} $\Sym^n(X)$ is defined as the quotient of $X^n$
+    Let $X$ be a quasiprojective variety. Then the $n$-fold \emph{symmetric product} $\Sym^n(X)$ is defined as the quotient of $X^n$
     (which is again quasiprojective via the Segre embedding) by the natural action of the symmetric group in $n$ letters.
 \end{definition}
 
@@ -480,7 +480,7 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
     \]
     Here $S_n$ acts on the
     polynomial ring by permuting the $x_i$. As remarked above, by the fundamental theorem of elementary symmetric polynomials the subring
-    of symmetric polynomials is generated as an algebra by the elementary symmetric polynomials and these are algebraically independeent, hence
+    of symmetric polynomials is generated as an algebra by the elementary symmetric polynomials and these are algebraically independent, hence
     $Sym^n(\mathbb{A}^1) \cong \mathbb{A}^n$.
 \end{example}
 
@@ -548,8 +548,35 @@ $\pi_i \colon U_i \cap U_j \to \pi_i(U_i \cap U_j)$ and $\pi_j \colon U_i \cap U
 \end{example}
 
 \begin{example}
-    $Sym^n(\mathbb{P}^1) = \mathbb{P}^n$. 
-    %Let us first recall some facts about the product of projective varieties. If $X = Proj(B)$ for some graded $k$-algebra of finite type,
+    $\Sym^n(\mathbb{P}_k^1) = \mathbb{P}_k^n$. We describe this isomorphism on closed points for the case that $k$ is algebraically closed.
+    First we identify $\mathbb{P}_k^n$ with $\mathbb{P}(k[X,Y]_n)$, the projectivization of the $n+1$ dimensional vector space of
+    homogenous polynomials of degree n. Then consider the map
+    \begin{align*}
+        (\mathbb{P}_k^1)^n &\to \mathbb{P}(k[X,Y]_n)\\
+        ([a_{1,1}:a_{2,1}],\dots,[a_{1,n},a_{2,n}]) &\mapsto [(a_{1,1}X + a_{2,1}Y)\dots(a_{1,n}X + a_{2,n}Y)]
+    \end{align*}
+    This is well defined, since if we rescale one of the $[a_{1,i},a_{2,i}]$ by some scalar we rescale the polynomial on the right hand side
+    by the same scalar which does not change its equivalence class in the projectivization.
+    This also factors over the symmetric product since multiplication is commutative, hence we obtain a induced map
+    $\varphi \colon Sym^n(\mathbb{P}_k^1) \to \mathbb{P}(k[X,Y]_n)$. 
+    We claim that $\varphi$ is an isomorphism. First we show that this is a regular map.
+    For this define the \emph{elementary homogenous polynomials} in $x_{1,1},x_{2,1},\dots,x_{1,n},x_{2,n}$ as the coefficients of the polynomial
+    $\prod (x_{1,i}X+ x_{2,i}Y)$. Let us denote the coefficient of $X^iY^j$ by $p_{i,j}$.
+    When we now choose the monomials as a basis of $k[X,Y]_n$, thus fixing an isomorphism $\mathbb{P}(k[X,Y]_n) \cong \mathbb{P}_k^n$
+    $\varphi$ is given as
+    \begin{align*}
+        \varphi \colon \Sym^n(\mathbb{P}_k^1) &\to \mathbb{P}(k[X,Y])_n \cong \mathbb{P}_k^n\\
+        [a_{1,1}:a_{2,1}],\dots,[a_{1,n}:a_{2,1}] &\mapsto [p_{0,n}(a_{1,1},\dots, a_{2,n}),\dots,p_{n,0}(a_{1,1},\dots, a_{2,n})].
+    \end{align*}
+    Hence it is a regular map.
+    For bijectivity note that because $k$ is algebraically closed every nonzero homogenous polynomial of degree $n$ factors uniquely (up to
+    units) in linear homogenous polynomials.
+    Indeed if $f = \sum_{i=0}^n a_iX^iY^{n-i}$ we may write this as
+    \[
+        f = Y^n \sum_{i=0}^n a_i\left(\frac{X}{Y}\right)^i.
+    \]
+    And since $k$ is algebraically closed, the second factor, seen as polynomial in $\frac{X}{Y}$, factors into linear polynomials.
+        %Let us first recall some facts about the product of projective varieties. If $X = Proj(B)$ for some graded $k$-algebra of finite type,
     %then $X^n = Proj(\bigoplus_{d \ge 0} \bigotimes_{i = 0}^n B_d$. The action of 
 \end{example}
 
@@ -596,8 +623,9 @@ Picard group.
     \end{align*}
     Is a projective $n-g$-space bundle.%XXX: what is the convention here? n-g or n-g+1?
 \end{theorem}
-\begin{proof}
-    We only sketch the idea, for a complete proof and a rigourous introduction of the employed concepts see (TODO: Milne, Mumford?)
+\begin{proof}[Idea of proof]
+    We only sketch the idea, for a complete proof and a rigourous introduction of the employed concepts see \cite{schwarzenberger1963}
+    and \cite[Chap. III.5]{milneAV} (especially Remark 5.6).
     The fibre over some $\mathcal{L}(D - nP)$, for $D = \sum x_i$ is the complete linear system $|D| = \mathbb{P}(H^0(C, \mathcal{L}(D)))$.
     As usual, denote by $l(D)$ the dimension of the global sections of $\mathcal{L}(D)$, then Riemann-Roch tells us 
     that $l(D) - l(K-D) = deg(D) - g + 1 = n - g + 1$, but since $deg(K) = 2g-2$, for $n > 2g-2$ we find $l(K-D) = 0$, and hence
@@ -649,8 +677,8 @@ Now we calculate
 
 Making a the substitution $n = er$ and using $\log(1-t) = - \sum_{m=1}^\infty \frac{t^m}{m}$ we get 
 \begin{align*}
-    \log(Z(X,t)) &= \sum_{r=1}^\infty \sum_{e=1}^\infty c_e \frac{t^{er}}{r} = \sum_{e=1}^\infty c_e log(1-t^e) \\
-                 &= \sum_{e=1}^\infty log(1-t^{c_e e}) = log(\prod_{e=1}^\infty (1-t^e)^{c_e}).
+    \log(Z(X,t)) &= \sum_{r=1}^\infty \sum_{e=1}^\infty c_e \frac{t^{er}}{r} = \sum_{e=1}^\infty c_e \log(1-t^e) \\
+                 &= \sum_{e=1}^\infty \log ( (1-t^e)^{c_e} ) = \log(\prod_{e=1}^\infty (1-t^e)^{c_e}).
 \end{align*}
 So after taking the exponential of both sides, we find that
 \begin{align*}
@@ -681,7 +709,7 @@ The first important result on the way is a lemma that helps us to construct such
 and complete varieties. For this we quickly recall the notion of a monoid ring.
 
 \begin{definition}
-    Let $G$ be a (multiplicative) monoid. Write $\mathbb{Z}[G]$ for the free abelian group over $G$, i.e. the set of formal sums
+    Let $G$ be a (multiplicative) monoid. Write $\mathbb{Z}[G]$ for the free abelian group over $G$, i.e.\ the set of formal sums
     $\sum_{g \in G} n_g g$ with the $n_g$ being integers, only finitely many nonzero.
     Defining multiplication as
     \[
@@ -824,7 +852,7 @@ To check multiplicativity, we use the following lemma.
 \begin{proof}
     Note that we have 
     \begin{align*}
-        \Omega_{X \times Y / k}^p & \cong {\bigwedge}^p(\pi_X^*\Omega_{X/k} \otimes \pi_Y^* \Omega_{Y/k}) 
+        \Omega_{X \times Y / k}^p & \cong {\bigwedge}^p(\pi_X^*\Omega_{X/k} \oplus \pi_Y^* \Omega_{Y/k}) 
                                     \cong \bigoplus_{i+j = p} {\bigwedge}^i(\pi_X^*\Omega_X)  \otimes {\bigwedge}^j(\pi_Y^*\Omega_Y)\\
                                   & \cong \bigoplus_{i+j = p} \pi_X^*\Omega^i_X \otimes \pi_Y^*\Omega^j_Y.
     \end{align*}
