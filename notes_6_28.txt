@@ -15,6 +15,7 @@ Grothendieck ring; vielleicht kann man das noch etwas genauer formulieren.
 - Seite 9, erste Zeile: $G$ invariant ring-> the ring of $G$-invariants.
 - Lemma 4.5: is -> it is
 - Beweis von Lemma 4.5: "By passing to the orbits of T_i..." verstehe ich nicht
+
 - Seite 10, direkt nach Remark 4.6: an quasi-projective-> a quasi-projective
 - Def. 4.9: ...quasiprojective variety. Then the n-fold...
 - Example 4.10: independeent->independent

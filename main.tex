@@ -411,13 +411,19 @@ First we slightly rephrase the definition for the case of schemes.
     \]
     hence it is integral over $A^{S_n}$ (and thus also over $A^G$).
     This proves that $\Spec(A^G)$ is again a variety. To show that it is also the quotient of $X$ by the action of $X$ we check the properties
-    i) to iii) of \ref{quotProps}. Let us prove the first property.
+    i) to iii) of \ref{quotProps}. 
+    
+    Let us prove the first property.
     Since we have $g\mathfrak{p} \cap A^G$ = $\mathfrak{p} \cap A^G$ each orbit is contained in some fiber. For the converse assume that we have
     prime ideals $\mathfrak{p},\mathfrak{q} \subset A$ such that $\mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$.
     For $a \in \mathfrak{p}$ we have $\prod_{g \in G} ga \in \mathfrak{p} \cap A^G = \mathfrak{q} \cap A^G$, and since $\mathfrak{q} \cap A^G$
     is prime we find some $g \in G$ such that $ga \in \mathfrak{q} \cap A^G$ or equivalently 
     $a \in g^{-1}\mathfrak{q} \cap A^G \subset g^{-1}\mathfrak{q}$. Hence 
-    we have $\mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}$ and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
+    we have 
+    \[
+        \mathfrak{p} \subset \bigcup_{g \in G} g\mathfrak{q}
+    \]
+    and can apply the prime avoidance lemma to find that $\mathfrak{p}$ had to be
     contained in some $g\mathfrak{q}$. Because the situation is symmetric in $\mathfrak{p}$ and $\mathfrak{q}$ we find $h \in G$ such that
     $\mathfrak{q} \subset h\mathfrak{p}$, hence $\mathfrak{p} \subset g\mathfrak{q} \subset hg\mathfrak{p}$. Now we use the fact that
     for a integral extension two prime ideals with the same contraction, one subset of the other, must be equal. Applied to this
