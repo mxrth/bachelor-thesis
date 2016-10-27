@@ -2,7 +2,7 @@
 
 My Bachelor Thesis written at the University of Bonn under the supervision of Prof. Huybrechts and Dr. Ulirsch. It aims to give an exposition of a result by Larsen and Lunts on the irrationality of Kapranov's motivic zeta function (a generalization of the Hasse-Weil zeta function) over the complex numbers. On the way the Grothendieck ring of varieties is studied, giving explicit forms for the motivic zeta functions of curves, and the original argument is simplified by citing a new result due to Bittner.
 
-Things I would do different (most of these are "nice-to-haves", none of them are rectification of serious errors):
+Things I would do different (most of these are "nice-to-haves", none of them are rectifications of serious errors):
 - Give a (quick) overview over the proof of Bittner's result (this might be out scope) 
 - Eventually re-do Example 4.12 in a more abstract formulation, the language of Theorem 4.15. This would nicely foreshadow the general theorem for curves.
 - Reorganize the section on the motivic zeta function of curves: state the main result (rationality for arbitrary (resp. alg. closed) fields), and maybe expand on the theory of the Picard variety (i.e. how it can be defined as representing a certain functor), though that might be out of scope
